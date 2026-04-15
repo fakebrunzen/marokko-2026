@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🇲🇦 Marokko Reise 2026 – Björn Bäurle</title>
+  <script>
+    const HASH = '1bcae91f843c5192bdedec2a6ad15dd03362124d8f9f803357dc96ee47d24ef7';
+
+    async function sha256(msg) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+    }
+
+    async function unlock() {
+      const input = document.getElementById('pw-input').value;
+      const hash = await sha256(input);
+      if (hash === HASH) {
+        sessionStorage.setItem('unlocked', '1');
+        document.getElementById('pw-overlay').style.display = 'none';
+      } else {
+        const err = document.getElementById('pw-error');
+        err.style.display = 'block';
+        document.getElementById('pw-input').value = '';
+        document.getElementById('pw-input').focus();
+        setTimeout(() => err.style.display = 'none', 3000);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem('unlocked') === '1') {
+        document.getElementById('pw-overlay').style.display = 'none';
+      }
+      document.getElementById('pw-input').addEventListener('keydown', e => {
+        if (e.key === 'Enter') unlock();
+      });
+    });
+  </script>
+  <style>
+    /* ── PASSWORD OVERLAY ───────────────────── */
+    #pw-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: linear-gradient(135deg, #1a3a5c 0%, #c0522a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pw-box {
+      background: white;
+      border-radius: 18px;
+      padding: 40px 36px 32px;
+      max-width: 360px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+    }
+    .pw-box .flag { font-size: 3rem; margin-bottom: 10px; }
+    .pw-box h2 { font-family: 'Segoe UI', Arial, sans-serif; font-size: 1.35rem; color: #1a3a5c; margin-bottom: 4px; }
+    .pw-box p  { font-family: 'Segoe UI', Arial, sans-serif; font-size: 0.88rem; color: #888; margin-bottom: 22px; }
+    #pw-input {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 1.05rem;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      outline: none;
+      letter-spacing: 2px;
+      text-align: center;
+      font-family: monospace;
+      transition: border-color .2s;
+      margin-bottom: 14px;
+    }
+    #pw-input:focus { border-color: #c0522a; }
+    #pw-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #1a3a5c, #c0522a);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      transition: opacity .2s;
+    }
+    #pw-btn:hover { opacity: 0.88; }
+    #pw-error {
+      display: none;
+      margin-top: 12px;
+      color: #c0392b;
+      font-size: 0.87rem;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+  </style>
+  <style>
+    :root {
+      --sand: #f5e6c8;
+      --terracotta: #c0522a;
+      --dark-terracotta: #8b3a1c;
+      --gold: #d4a046;
+      --deep-blue: #1a3a5c;
+      --light-blue: #e8f0f8;
+      --green: #2e7d52;
+      --light-green: #e8f5ed;
+      --orange: #e07b2a;
+      --light-orange: #fff3e6;
+      --red: #c0392b;
+      --light-red: #fdf0ee;
+      --grey: #6c757d;
+      --light-grey: #f8f9fa;
+      --white: #ffffff;
+      --shadow: 0 2px 12px rgba(0,0,0,0.10);
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #1a3a5c 0%, #c0522a 100%);
+      min-height: 100vh;
+      padding: 24px 16px 60px;
+      color: #222;
+    }
+
+    .page-header {
+      text-align: center;
+      color: white;
+      margin-bottom: 32px;
+    }
+    .page-header .flag { font-size: 3.5rem; }
+    .page-header h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: 1px; text-shadow: 0 2px 8px rgba(0,0,0,0.3); margin: 8px 0 4px; }
+    .page-header .subtitle { font-size: 1.1rem; opacity: 0.88; }
+    .page-header .guests { margin-top: 10px; font-size: 0.95rem; background: rgba(255,255,255,0.18); display: inline-block; padding: 5px 16px; border-radius: 20px; }
+
+    .container { max-width: 900px; margin: 0 auto; }
+
+    /* ── STATUS BANNER ───────────────────────── */
+    .status-banner {
+      background: white;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+    .status-banner h2 { font-size: 1.1rem; color: var(--deep-blue); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+    .status-item {
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .status-item .icon { font-size: 1.4rem; flex-shrink: 0; }
+    .status-item .text { font-size: 0.88rem; line-height: 1.45; }
+    .status-item .text strong { display: block; font-size: 0.95rem; }
+    .status-ok { background: var(--light-green); }
+    .status-ok .text strong { color: var(--green); }
+    .status-warn { background: var(--light-orange); }
+    .status-warn .text strong { color: var(--orange); }
+    .status-err { background: var(--light-red); }
+    .status-err .text strong { color: var(--red); }
+
+    /* ── TIMELINE ─────────────────────────────── */
+    .timeline { position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--gold), var(--terracotta));
+      border-radius: 2px;
+    }
+
+    .day-block {
+      position: relative;
+      padding-left: 70px;
+      margin-bottom: 20px;
+    }
+    .day-dot {
+      position: absolute;
+      left: 18px;
+      top: 16px;
+      width: 23px; height: 23px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px var(--gold);
+      z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6rem; color: white;
+    }
+    .day-dot.car { background: var(--deep-blue); box-shadow: 0 0 0 2px var(--deep-blue); }
+    .day-dot.camp { background: #6b4e2a; box-shadow: 0 0 0 2px #6b4e2a; }
+    .day-dot.drive { background: var(--terracotta); box-shadow: 0 0 0 2px var(--terracotta); }
+
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--light-grey);
+      border-bottom: 1px solid #eee;
+    }
+    .card-header .date-badge {
+      background: var(--terracotta);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .card-header .location { font-size: 0.82rem; color: var(--grey); }
+    .card-header h3 { font-size: 1.05rem; color: var(--deep-blue); font-weight: 700; line-height: 1.3; }
+
+    .card-body { padding: 16px 18px; }
+
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 24px;
+      margin-bottom: 10px;
+    }
+    .info-item { font-size: 0.87rem; display: flex; align-items: center; gap: 6px; }
+    .info-item .label { color: var(--grey); }
+    .info-item .value { font-weight: 600; color: #222; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .tag {
+      font-size: 0.78rem;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+    .tag-green { background: var(--light-green); color: var(--green); }
+    .tag-blue { background: var(--light-blue); color: var(--deep-blue); }
+    .tag-orange { background: var(--light-orange); color: var(--orange); }
+    .tag-red { background: var(--light-red); color: var(--red); }
+    .tag-gold { background: #fff8e6; color: #b07d1a; }
+
+    .confirmation-line {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed #ddd;
+      font-size: 0.8rem;
+      color: var(--grey);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+    }
+    .confirmation-line span { display: flex; align-items: center; gap: 4px; }
+    .confirmation-line .code { font-family: monospace; color: #555; background: #f0f0f0; padding: 1px 6px; border-radius: 4px; }
+
+    /* ── CAR RENTAL ───────────────────────── */
+    .car-card {
+      background: var(--deep-blue);
+      color: white;
+    }
+    .car-card .card-header {
+      background: rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    .car-card .card-header h3 { color: white; }
+    .car-card .card-header .date-badge { background: var(--gold); color: var(--deep-blue); }
+    .car-card .card-header .location { color: rgba(255,255,255,0.7); }
+    .car-card .info-item .label { color: rgba(255,255,255,0.65); }
+    .car-card .info-item .value { color: white; }
+    .car-card .confirmation-line { border-top-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.65); }
+    .car-card .confirmation-line .code { background: rgba(255,255,255,0.15); color: white; }
+
+    /* ── INSURANCE ────────────────────────── */
+    .insurance-card {
+      background: var(--light-green);
+      border: 1.5px solid #a3d4b5;
+    }
+    .insurance-card .card-header {
+      background: #d8f0e5;
+      border-bottom: 1px solid #a3d4b5;
+    }
+    .insurance-card .card-header h3 { color: var(--green); }
+    .insurance-card .card-header .date-badge { background: var(--green); }
+
+    /* ── SECTION TITLE ────────────────────── */
+    .section-title {
+      color: white;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 28px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-left: 12px;
+      border-left: 4px solid var(--gold);
+    }
+
+    /* ── SUMMARY TABLE ───────────────────── */
+    .summary-card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px 24px;
+      margin-bottom: 24px;
+    }
+    .summary-card h2 { font-size: 1.05rem; color: var(--deep-blue); margin-bottom: 16px; }
+    .summary-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    .summary-table th {
+      background: var(--deep-blue);
+      color: white;
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .summary-table th:first-child { border-radius: 6px 0 0 0; }
+    .summary-table th:last-child { border-radius: 0 6px 0 0; text-align: right; }
+    .summary-table td { padding: 8px 12px; border-bottom: 1px solid #eee; vertical-align: middle; }
+    .summary-table td:last-child { text-align: right; font-weight: 600; }
+    .summary-table tr:last-child td { border-bottom: none; }
+    .summary-table tr:hover td { background: var(--light-grey); }
+    .summary-table .total-row td { background: var(--sand); font-weight: 700; border-top: 2px solid var(--gold); }
+    .summary-table .total-row td:first-child { border-radius: 0 0 0 6px; }
+    .summary-table .total-row td:last-child { border-radius: 0 0 6px 0; color: var(--terracotta); font-size: 1rem; }
+    .night-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); margin-right: 4px; }
+
+    /* ── NOTICES ─────────────────────────── */
+    .notice-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; margin-bottom: 24px; }
+    .notice {
+      background: white;
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--orange);
+    }
+    .notice.red { border-left-color: var(--red); }
+    .notice.green { border-left-color: var(--green); }
+    .notice h4 { font-size: 0.9rem; margin-bottom: 6px; }
+    .notice.red h4 { color: var(--red); }
+    .notice h4 { color: var(--orange); }
+    .notice.green h4 { color: var(--green); }
+    .notice p { font-size: 0.83rem; color: #555; line-height: 1.5; }
+
+    @media (max-width: 600px) {
+      .timeline::before { left: 16px; }
+      .day-block { padding-left: 46px; }
+      .day-dot { left: 6px; width: 20px; height: 20px; }
+      .page-header h1 { font-size: 1.6rem; }
+      .summary-table { font-size: 0.8rem; }
+      .summary-table th, .summary-table td { padding: 6px 8px; }
+    }
+
+    /* ── FOTO GALERIE ────────────────────────── */
+    .foto-section {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 28px;
+    }
+    .foto-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .foto-section-header h2 { font-size: 1.05rem; color: var(--deep-blue); }
+    .foto-caption .foto-titel { font-size: 0.88rem; font-weight: 600; color: #222; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .foto-caption .foto-meta { font-size: 0.76rem; color: var(--grey); margin-top: 3px; display: flex; gap: 8px; }
+    .foto-group { margin-bottom: 16px; }
+    .foto-group-header { display: flex; align-items: center; gap: 10px; padding: 8px 4px; flex-wrap: wrap; }
+    .foto-group-label { font-weight: 600; font-size: 0.9rem; color: var(--deep-blue); }
+    .foto-group-sub { font-size: 0.8rem; color: var(--grey); }
+    .foto-group-count { font-size: 0.75rem; color: #aaa; margin-left: auto; }
+    .foto-grid-inner { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 3px; }
+    .foto-thumb { width: 100%; aspect-ratio: 1 / 1; min-height: 110px; background-size: cover; background-position: center; cursor: pointer; border-radius: 3px; transition: opacity .2s; }
+    .foto-thumb:hover { opacity: 0.85; }
+    .foto-overlay { display: none; }
+
+    /* ── LIGHTBOX ────────────────────────────── */
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 78vh;
+      border-radius: 8px;
+      object-fit: contain;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    }
+    #lightbox-caption .lb-titel { font-weight: 600; font-size: 1.05rem; }
+    #lightbox-caption .lb-meta { opacity: 0.65; font-size: 0.85rem; margin-top: 4px; }
+    #lightbox-close:hover { opacity: 1; }
+    #lightbox-prev, #lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: none;
+      font-size: 1.8rem;
+      padding: 12px 16px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background .2s;
+    }
+    #lightbox-prev:hover, #lightbox-next:hover { background: rgba(255,255,255,0.28); }
+    @media (max-width: 600px) {
+        }
+  </style>
+</head>
+<body>
+
+<!-- ── PASSWORT-OVERLAY ─────────────────────── -->
+<div id="pw-overlay">
+  <div class="pw-box">
+    <div class="flag">🇲🇦</div>
+    <h2>Marokko Reise 2026</h2>
+    <p>Bitte Passwort eingeben</p>
+    <input id="pw-input" type="password" placeholder="Passwort …" autocomplete="off" autofocus />
+    <button id="pw-btn" onclick="unlock()">Öffnen →</button>
+    <div id="pw-error">❌ Falsches Passwort – bitte erneut versuchen.</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ── HEADER ──────────────────────────────── -->
+  <div class="page-header">
+    <div class="flag">🇲🇦</div>
+    <h1>Marokko Reise 2026</h1>
+    <div class="subtitle">28. März – 11. April 2026 &nbsp;·&nbsp; 14 Nächte</div>
+    <div class="guests">👨‍👩‍👧‍👦 Björn &amp; Marlene Bäurle &nbsp;·&nbsp; 2 Erwachsene + 3 Kinder (Piet 8 J., Karlo 4 J., Pepe 1 J.)</div>
+  </div>
+
+
+<!-- ── REISEFOTOS ──────────────────────────── -->
+  <div class="section-title">📷 Reisefotos</div>
+  <div class="foto-section">
+    <div class="foto-section-header">
+      <div>
+        <h2 style="margin:0;font-size:1rem;color:var(--deep-blue)">🇲🇦 Marokko 2026 – Alle Fotos</h2>
+        <p style="margin:4px 0 0;font-size:0.8rem;color:var(--grey)">441 Fotos · 16 Tage · 8 Etappen</p>
+      </div>
+    </div>
+    <div id="foto-container"></div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;flex-direction:column" onclick="if(event.target===this)closeLightbox()">
+    <button onclick="closeLightbox()" style="position:absolute;top:16px;right:20px;background:none;border:none;color:white;font-size:2rem;cursor:pointer;z-index:2">✕</button>
+    <button onclick="lbPrev()" style="position:absolute;left:16px;background:rgba(255,255,255,0.15);border:none;color:white;font-size:2rem;padding:12px 16px;cursor:pointer;border-radius:8px">‹</button>
+    <img id="lb-img" src="" style="max-height:88vh;max-width:92vw;object-fit:contain;border-radius:6px" />
+    <div id="lb-counter" style="color:rgba(255,255,255,0.6);font-size:0.85rem;margin-top:10px"></div>
+    <div id="lightbox-caption" style="text-align:center;color:white;padding:6px 20px 0;max-width:min(600px,90vw)">
+      <div class="lb-titel" id="lb-titel"></div>
+      <div class="lb-meta" id="lb-meta"></div>
+    </div>
+    <button onclick="lbNext()" style="position:absolute;right:16px;background:rgba(255,255,255,0.15);border:none;color:white;font-size:2rem;padding:12px 16px;cursor:pointer;border-radius:8px">›</button>
+  </div>
+
+  <script>
+    const FOTO_GROUPS = [
+      { date: "00000000", label: "📷 Vor der Reise", sub: "Piet, Karlo & Pepe – bereit!", photos: ["fotos_web/die-drei.jpg"] },
+      { date: "20260328", label: "28. März · Abfahrt & Ankunft", sub: "Tangstedt → Schiphol → Casablanca", photos: ["fotos_web/PXL_20260328_122016085.MP.jpg", "fotos_web/PXL_20260328_122019914.jpg", "fotos_web/PXL_20260328_122021850.jpg", "fotos_web/PXL_20260328_131014183.jpg", "fotos_web/PXL_20260328_164428006.MP.jpg", "fotos_web/PXL_20260328_164435412.jpg"] },
+      { date: "20260329", label: "29. März · Hoher Atlas", sub: "Fahrt Nouaseur → Midelt · Azrou, Ifrane", photos: ["fotos_web/PXL_20260329_084151303.MP.jpg", "fotos_web/PXL_20260329_084154669.MP.jpg", "fotos_web/PXL_20260329_084206148.jpg", "fotos_web/PXL_20260329_084211232.MP.jpg", "fotos_web/PXL_20260329_084220564.MP.jpg", "fotos_web/PXL_20260329_085507184.MP.jpg", "fotos_web/PXL_20260329_090331662.MP.jpg", "fotos_web/PXL_20260329_091724444.MP.jpg", "fotos_web/PXL_20260329_164729629.MP.jpg", "fotos_web/PXL_20260329_164731307.jpg", "fotos_web/PXL_20260329_171822262.MP.jpg", "fotos_web/PXL_20260329_171822931.jpg", "fotos_web/PXL_20260329_171825542.jpg", "fotos_web/PXL_20260329_171826822.jpg", "fotos_web/PXL_20260329_171844767.MP.jpg", "fotos_web/PXL_20260329_171845769.jpg", "fotos_web/PXL_20260329_171846045.jpg", "fotos_web/PXL_20260329_172335505.MP.jpg", "fotos_web/PXL_20260329_172337197.jpg", "fotos_web/PXL_20260329_172339157.jpg", "fotos_web/PXL_20260329_172353723.MP.jpg", "fotos_web/PXL_20260329_172359544.MP.jpg", "fotos_web/PXL_20260329_180714089.MP.jpg", "fotos_web/PXL_20260329_220922859.MP.jpg", "fotos_web/PXL_20260329_220923843.jpg", "fotos_web/PXL_20260329_220927292.jpg"] },
+      { date: "20260330", label: "30. März · In die Sahara", sub: "Fahrt Midelt → Merzouga · Ziz-Tal, Erfoud", photos: ["fotos_web/PXL_20260330_074139486.MP.jpg", "fotos_web/PXL_20260330_090331949.jpg", "fotos_web/PXL_20260330_090350108.MP.jpg", "fotos_web/PXL_20260330_090401750.MP.jpg", "fotos_web/PXL_20260330_092548741.MP.jpg", "fotos_web/PXL_20260330_092556236.jpg", "fotos_web/PXL_20260330_092558790.MP.jpg", "fotos_web/PXL_20260330_095754657.jpg", "fotos_web/PXL_20260330_095756046.jpg", "fotos_web/PXL_20260330_095805910.jpg", "fotos_web/PXL_20260330_095819568.jpg", "fotos_web/PXL_20260330_100007092.MP.jpg", "fotos_web/PXL_20260330_100657265.MP.jpg", "fotos_web/PXL_20260330_105947547.MP.jpg", "fotos_web/PXL_20260330_110217341.MP.jpg", "fotos_web/PXL_20260330_110252791.jpg", "fotos_web/PXL_20260330_112121303.jpg", "fotos_web/PXL_20260330_112315113.jpg", "fotos_web/PXL_20260330_113557781.MP.jpg", "fotos_web/PXL_20260330_113840376.jpg", "fotos_web/PXL_20260330_114314587.MP.jpg", "fotos_web/PXL_20260330_122109058.jpg", "fotos_web/PXL_20260330_144455074.MP.jpg", "fotos_web/PXL_20260330_144457165.jpg", "fotos_web/PXL_20260330_144614869.MP.jpg", "fotos_web/PXL_20260330_144626699.jpg", "fotos_web/PXL_20260330_144938306.MP.jpg", "fotos_web/PXL_20260330_162531307.MP.jpg", "fotos_web/PXL_20260330_162834652.MP.jpg", "fotos_web/PXL_20260330_164412704.MP.jpg", "fotos_web/PXL_20260330_164421399.MP.jpg", "fotos_web/PXL_20260330_164425325.MP.jpg", "fotos_web/PXL_20260330_164518174.MP.jpg", "fotos_web/PXL_20260330_164527768.MP.jpg", "fotos_web/PXL_20260330_164534404.MP.jpg", "fotos_web/PXL_20260330_164538536.jpg", "fotos_web/PXL_20260330_164555400.jpg", "fotos_web/PXL_20260330_171113107.jpg", "fotos_web/PXL_20260330_171117143.jpg", "fotos_web/PXL_20260330_171345305.jpg", "fotos_web/PXL_20260330_171803076.jpg", "fotos_web/PXL_20260330_172502455.jpg", "fotos_web/PXL_20260330_182451828.jpg", "fotos_web/PXL_20260330_182504383.jpg", "fotos_web/PXL_20260330_182504617.jpg"] },
+      { date: "20260331", label: "31. März · Merzouga", sub: "Hotel Sunset Palace & Erg Chebbi Dünen", photos: ["fotos_web/PXL_20260331_085015839.jpg", "fotos_web/PXL_20260331_085030528.MP.jpg", "fotos_web/PXL_20260331_085800879.MP.jpg", "fotos_web/PXL_20260331_090901547.jpg", "fotos_web/PXL_20260331_091049167.jpg", "fotos_web/PXL_20260331_091229443.jpg", "fotos_web/PXL_20260331_093518457.jpg", "fotos_web/PXL_20260331_093522208.jpg", "fotos_web/PXL_20260331_093529112.jpg", "fotos_web/PXL_20260331_093530985.jpg", "fotos_web/PXL_20260331_093606301.jpg", "fotos_web/PXL_20260331_093609236.jpg", "fotos_web/PXL_20260331_093951552.MP.jpg", "fotos_web/PXL_20260331_093952697.jpg", "fotos_web/PXL_20260331_093954118.jpg", "fotos_web/PXL_20260331_094244090.jpg", "fotos_web/PXL_20260331_094307345.PORTRAIT.ORIGINAL.jpg", "fotos_web/PXL_20260331_094503440.jpg", "fotos_web/PXL_20260331_100001576.jpg", "fotos_web/PXL_20260331_100305844.MP.jpg", "fotos_web/PXL_20260331_100309137.jpg", "fotos_web/PXL_20260331_112001345.jpg", "fotos_web/PXL_20260331_115855383.jpg", "fotos_web/PXL_20260331_143150727.jpg", "fotos_web/PXL_20260331_143157793.MP.jpg", "fotos_web/PXL_20260331_143708349.jpg", "fotos_web/PXL_20260331_143713514.jpg", "fotos_web/PXL_20260331_143728013.jpg", "fotos_web/PXL_20260331_143728425.jpg", "fotos_web/PXL_20260331_143729960.MP.jpg", "fotos_web/PXL_20260331_143730260.jpg", "fotos_web/PXL_20260331_143736642.jpg", "fotos_web/PXL_20260331_143737154.jpg", "fotos_web/PXL_20260331_143737353.jpg", "fotos_web/PXL_20260331_143740996.jpg", "fotos_web/PXL_20260331_143741484.jpg", "fotos_web/PXL_20260331_143741725.jpg", "fotos_web/PXL_20260331_143750657.jpg", "fotos_web/PXL_20260331_143750989.jpg", "fotos_web/PXL_20260331_143751317.jpg", "fotos_web/PXL_20260331_171224811.jpg", "fotos_web/PXL_20260331_171225471.jpg", "fotos_web/PXL_20260331_171228070.jpg", "fotos_web/PXL_20260331_175957590.jpg", "fotos_web/PXL_20260331_180023492.MP.jpg", "fotos_web/PXL_20260331_180040595.jpg", "fotos_web/PXL_20260331_182101942.MP.jpg", "fotos_web/PXL_20260331_182109884.MP.jpg", "fotos_web/PXL_20260331_182238530.MP.jpg", "fotos_web/PXL_20260331_182241284.MP.jpg", "fotos_web/PXL_20260331_182244551.MP.jpg", "fotos_web/PXL_20260331_182443676.jpg", "fotos_web/PXL_20260331_183914619.MP.jpg"] },
+      { date: "20260401", label: "1. April · Glamping in der Sahara", sub: "Sahara Luxury Glamping · Erg Chebbi", photos: ["fotos_web/PXL_20260401_070143568.MP.jpg", "fotos_web/PXL_20260401_070152084.MP.jpg", "fotos_web/PXL_20260401_074137997.PORTRAIT.jpg", "fotos_web/PXL_20260401_081153606.jpg", "fotos_web/PXL_20260401_081200601.jpg", "fotos_web/PXL_20260401_081204931.jpg", "fotos_web/PXL_20260401_081239269.MP.jpg", "fotos_web/PXL_20260401_081247556.MP.jpg", "fotos_web/PXL_20260401_083751386.PORTRAIT.jpg", "fotos_web/PXL_20260401_093448923.MP.jpg", "fotos_web/PXL_20260401_093451016.jpg", "fotos_web/PXL_20260401_093453858.MP.jpg", "fotos_web/PXL_20260401_094811594.MP.jpg", "fotos_web/PXL_20260401_095102431.PORTRAIT.ORIGINAL.jpg", "fotos_web/PXL_20260401_095417932.MP.jpg", "fotos_web/PXL_20260401_100301402.MP.jpg", "fotos_web/PXL_20260401_100303585.MP.jpg", "fotos_web/PXL_20260401_101359719.PORTRAIT.jpg", "fotos_web/PXL_20260401_110751904.MP.jpg", "fotos_web/PXL_20260401_110803623.PANO.jpg", "fotos_web/PXL_20260401_110825330.PANO.jpg", "fotos_web/PXL_20260401_110848203.PANO.jpg", "fotos_web/PXL_20260401_111005526.PORTRAIT.jpg", "fotos_web/PXL_20260401_111150231.MP.jpg", "fotos_web/PXL_20260401_111208549.MP.jpg", "fotos_web/PXL_20260401_111211434.MP.jpg", "fotos_web/PXL_20260401_111214354.MP.jpg", "fotos_web/PXL_20260401_111225433.MP.jpg", "fotos_web/PXL_20260401_112008945.jpg", "fotos_web/PXL_20260401_112012847.jpg", "fotos_web/PXL_20260401_115458003.MP.jpg", "fotos_web/PXL_20260401_115458365.jpg", "fotos_web/PXL_20260401_115458571.jpg", "fotos_web/PXL_20260401_115458781.jpg", "fotos_web/PXL_20260401_115517939.PORTRAIT.jpg", "fotos_web/PXL_20260401_115518372.PORTRAIT.jpg", "fotos_web/PXL_20260401_115611071.PORTRAIT.jpg", "fotos_web/PXL_20260401_115611612.PORTRAIT.jpg", "fotos_web/PXL_20260401_115611821.PORTRAIT.jpg", "fotos_web/PXL_20260401_115612021.PORTRAIT.jpg", "fotos_web/PXL_20260401_115612523.PORTRAIT.jpg", "fotos_web/PXL_20260401_115612711.PORTRAIT.jpg", "fotos_web/PXL_20260401_115623901.PORTRAIT.jpg", "fotos_web/PXL_20260401_115628969.PORTRAIT.jpg", "fotos_web/PXL_20260401_115629314.PORTRAIT.jpg", "fotos_web/PXL_20260401_115629713.PORTRAIT.jpg", "fotos_web/PXL_20260401_133749603.jpg", "fotos_web/PXL_20260401_134600426.jpg", "fotos_web/PXL_20260401_134644016.PORTRAIT.jpg", "fotos_web/PXL_20260401_134651329.PORTRAIT.jpg", "fotos_web/PXL_20260401_134653602.PORTRAIT.jpg", "fotos_web/PXL_20260401_134657130.PORTRAIT.jpg", "fotos_web/PXL_20260401_134700430.PORTRAIT.jpg", "fotos_web/PXL_20260401_134703360.PORTRAIT.jpg", "fotos_web/PXL_20260401_134706780.PORTRAIT.jpg", "fotos_web/PXL_20260401_134710304.PORTRAIT.jpg", "fotos_web/PXL_20260401_134711578.PORTRAIT.jpg", "fotos_web/PXL_20260401_134712515.PORTRAIT.jpg", "fotos_web/PXL_20260401_135022748.PORTRAIT.jpg", "fotos_web/PXL_20260401_135033361.PORTRAIT.jpg", "fotos_web/PXL_20260401_135036829.PORTRAIT.jpg", "fotos_web/PXL_20260401_135047940.PORTRAIT.jpg", "fotos_web/PXL_20260401_141231153.MP.jpg", "fotos_web/PXL_20260401_141235164.MP.jpg", "fotos_web/PXL_20260401_141237821.MP.jpg", "fotos_web/PXL_20260401_141743954.MP.jpg", "fotos_web/PXL_20260401_171118667.jpg", "fotos_web/PXL_20260401_171121128.jpg", "fotos_web/PXL_20260401_171138793.MP.jpg", "fotos_web/PXL_20260401_171144189.jpg", "fotos_web/PXL_20260401_171148457.jpg", "fotos_web/PXL_20260401_171150786.jpg", "fotos_web/PXL_20260401_171234467.jpg", "fotos_web/PXL_20260401_171236998.jpg", "fotos_web/PXL_20260401_171238477.jpg", "fotos_web/PXL_20260401_171241033.jpg", "fotos_web/PXL_20260401_171247990.jpg", "fotos_web/PXL_20260401_171304366.jpg", "fotos_web/PXL_20260401_171333220.jpg", "fotos_web/PXL_20260401_171336888.jpg", "fotos_web/PXL_20260401_171338009.jpg", "fotos_web/PXL_20260401_171348681.jpg", "fotos_web/PXL_20260401_171352240.jpg", "fotos_web/PXL_20260401_171400947.jpg", "fotos_web/PXL_20260401_171404567.jpg", "fotos_web/PXL_20260401_171808966.jpg", "fotos_web/PXL_20260401_171812490.jpg", "fotos_web/PXL_20260401_171817051.MP.jpg", "fotos_web/PXL_20260401_171821918.jpg", "fotos_web/PXL_20260401_171823272.jpg", "fotos_web/PXL_20260401_171845512.jpg", "fotos_web/PXL_20260401_173055344.jpg", "fotos_web/PXL_20260401_173100839.jpg", "fotos_web/PXL_20260401_173109304.jpg", "fotos_web/PXL_20260401_173543347.MP.jpg", "fotos_web/PXL_20260401_173626074.jpg", "fotos_web/PXL_20260401_173630000.jpg", "fotos_web/PXL_20260401_173637145.jpg", "fotos_web/PXL_20260401_180246447.PORTRAIT.jpg", "fotos_web/PXL_20260401_180248621.PORTRAIT.jpg", "fotos_web/PXL_20260401_180250219.PORTRAIT.jpg", "fotos_web/PXL_20260401_195438904.jpg"] },
+      { date: "20260402", label: "2. April · Todra-Schlucht", sub: "Fahrt Merzouga → Ouarzazate via Tinghir", photos: ["fotos_web/PXL_20260402_060736437.jpg", "fotos_web/PXL_20260402_060856510.jpg", "fotos_web/PXL_20260402_060912732.LONG_EXPOSURE-01.jpg", "fotos_web/PXL_20260402_060943316.jpg", "fotos_web/PXL_20260402_060947329.jpg", "fotos_web/PXL_20260402_061113685.PANO.jpg", "fotos_web/PXL_20260402_082550160.jpg", "fotos_web/PXL_20260402_082556829.jpg", "fotos_web/PXL_20260402_082601400.jpg", "fotos_web/PXL_20260402_082634349.jpg", "fotos_web/PXL_20260402_082647499.jpg", "fotos_web/PXL_20260402_082654584.jpg", "fotos_web/PXL_20260402_130933972.jpg", "fotos_web/PXL_20260402_131025290.jpg", "fotos_web/PXL_20260402_131111996.jpg", "fotos_web/PXL_20260402_131631245.jpg", "fotos_web/PXL_20260402_131642716.jpg", "fotos_web/PXL_20260402_131659237.jpg", "fotos_web/PXL_20260402_131708840.PORTRAIT.jpg", "fotos_web/PXL_20260402_131732241.PORTRAIT.jpg", "fotos_web/PXL_20260402_131940181.jpg", "fotos_web/PXL_20260402_131943720.jpg", "fotos_web/PXL_20260402_133303898.PORTRAIT.jpg", "fotos_web/PXL_20260402_134701615.PORTRAIT.jpg", "fotos_web/PXL_20260402_135103140.jpg", "fotos_web/PXL_20260402_135108056.MP.jpg", "fotos_web/PXL_20260402_135133413.jpg", "fotos_web/PXL_20260402_140328227.MP.jpg", "fotos_web/PXL_20260402_140804336.jpg", "fotos_web/PXL_20260402_140809042.jpg", "fotos_web/PXL_20260402_142633978.jpg", "fotos_web/PXL_20260402_142757723.jpg", "fotos_web/PXL_20260402_153311373.jpg", "fotos_web/PXL_20260402_153512335.jpg", "fotos_web/PXL_20260402_170038560.MP.jpg", "fotos_web/PXL_20260402_174812163.jpg", "fotos_web/PXL_20260402_174814994.jpg", "fotos_web/PXL_20260402_180043349.jpg", "fotos_web/PXL_20260402_180442653.jpg", "fotos_web/PXL_20260402_180444836.jpg", "fotos_web/PXL_20260402_180450051.jpg", "fotos_web/PXL_20260402_193734193.MP.jpg"] },
+      { date: "20260403", label: "3. April · Ouarzazate & Aït Benhaddou", sub: "UNESCO-Kasba & Afrikas Filmhauptstadt", photos: ["fotos_web/PXL_20260403_104859264.MP.jpg", "fotos_web/PXL_20260403_104906355.MP.jpg", "fotos_web/PXL_20260403_105000989.MP.jpg", "fotos_web/PXL_20260403_105001978.jpg", "fotos_web/PXL_20260403_105002835.jpg", "fotos_web/PXL_20260403_105004615.jpg", "fotos_web/PXL_20260403_105005865.jpg", "fotos_web/PXL_20260403_105006453.jpg", "fotos_web/PXL_20260403_110918980.PANO.jpg", "fotos_web/PXL_20260403_111038310.jpg", "fotos_web/PXL_20260403_113710628.jpg", "fotos_web/PXL_20260403_125208187.MP.jpg", "fotos_web/PXL_20260403_125209419.jpg", "fotos_web/PXL_20260403_130629825.MP.jpg", "fotos_web/PXL_20260403_131637630.MP.jpg", "fotos_web/PXL_20260403_153741114.jpg", "fotos_web/PXL_20260403_153744214.jpg", "fotos_web/PXL_20260403_164640006.MP.jpg", "fotos_web/PXL_20260403_164643384.jpg", "fotos_web/PXL_20260403_164655070.jpg", "fotos_web/PXL_20260403_164721704.MP.jpg", "fotos_web/PXL_20260403_164728809.MP.jpg", "fotos_web/PXL_20260403_164733507.MP.jpg", "fotos_web/PXL_20260403_164734147.jpg", "fotos_web/PXL_20260403_165239460.jpg", "fotos_web/PXL_20260403_165402104.jpg", "fotos_web/PXL_20260403_165407715.MP.jpg", "fotos_web/PXL_20260403_165417292.jpg"] },
+      { date: "20260404", label: "4. April · Marrakesch", sub: "Riad de Vincent · Medina & Djemaa el-Fna", photos: ["fotos_web/PXL_20260404_092042916.jpg", "fotos_web/PXL_20260404_092048021.MP.jpg", "fotos_web/PXL_20260404_095919305.MP.jpg", "fotos_web/PXL_20260404_095931308.MP.jpg", "fotos_web/PXL_20260404_100318760.jpg", "fotos_web/PXL_20260404_100320897.jpg", "fotos_web/PXL_20260404_100816214.MP.jpg", "fotos_web/PXL_20260404_102615145.PORTRAIT.jpg", "fotos_web/PXL_20260404_102619248.PORTRAIT.jpg", "fotos_web/PXL_20260404_102835962.PORTRAIT.jpg", "fotos_web/PXL_20260404_102840844.PORTRAIT.jpg", "fotos_web/PXL_20260404_114656587.MP.jpg", "fotos_web/PXL_20260404_114658408.jpg", "fotos_web/PXL_20260404_145319663.MP.jpg", "fotos_web/PXL_20260404_180649359.jpg", "fotos_web/PXL_20260404_180652668.jpg", "fotos_web/PXL_20260404_180655587.jpg", "fotos_web/PXL_20260404_180830609.jpg", "fotos_web/PXL_20260404_180837722.MP.jpg", "fotos_web/PXL_20260404_180904644.MP.jpg", "fotos_web/PXL_20260404_180909237.jpg", "fotos_web/PXL_20260404_180913387.jpg", "fotos_web/PXL_20260404_180919919.MP.jpg", "fotos_web/PXL_20260404_180920734.jpg", "fotos_web/PXL_20260404_180921664.jpg", "fotos_web/PXL_20260404_183822696.jpg", "fotos_web/PXL_20260404_183825062.jpg", "fotos_web/PXL_20260404_190703241.MP.jpg"] },
+      { date: "20260405", label: "5. April · Marrakesch → Atlantik", sub: "Fahrt via Essaouira nach Sidi Kaouki", photos: ["fotos_web/PXL_20260405_085317368.MP.jpg", "fotos_web/PXL_20260405_085336245.jpg", "fotos_web/PXL_20260405_085345738.jpg", "fotos_web/PXL_20260405_085401349.jpg", "fotos_web/PXL_20260405_085415312.jpg", "fotos_web/PXL_20260405_094934379.PORTRAIT.jpg", "fotos_web/PXL_20260405_115815192.MP.jpg", "fotos_web/PXL_20260405_120015033.MP.jpg", "fotos_web/PXL_20260405_123112026.MP.jpg", "fotos_web/PXL_20260405_123125528.MP.jpg", "fotos_web/PXL_20260405_123154034.MP.jpg", "fotos_web/PXL_20260405_123301827.MP.jpg", "fotos_web/PXL_20260405_123322541.MP.jpg", "fotos_web/PXL_20260405_124158283.jpg", "fotos_web/PXL_20260405_184402323.MP.jpg", "fotos_web/PXL_20260405_190608786.jpg", "fotos_web/PXL_20260405_190732953.jpg", "fotos_web/PXL_20260405_202153555.MP.jpg"] },
+      { date: "20260406", label: "6. April · Sidi Kaouki", sub: "La Maison des Vagues · Atlantikküste", photos: ["fotos_web/PXL_20260406_104118742.jpg", "fotos_web/PXL_20260406_104131397.PORTRAIT.jpg", "fotos_web/PXL_20260406_115515278.jpg", "fotos_web/PXL_20260406_131623459.MP.jpg", "fotos_web/PXL_20260406_135200744.MP.jpg", "fotos_web/PXL_20260406_140431522.MP.jpg", "fotos_web/PXL_20260406_140436553.jpg", "fotos_web/PXL_20260406_140437355.jpg", "fotos_web/PXL_20260406_140501860.jpg", "fotos_web/PXL_20260406_140511490.jpg", "fotos_web/PXL_20260406_140650487.MP.jpg", "fotos_web/PXL_20260406_140652869.MP.jpg", "fotos_web/PXL_20260406_154655257.MP.jpg", "fotos_web/PXL_20260406_171451436.MP.jpg", "fotos_web/PXL_20260406_175125863.jpg", "fotos_web/PXL_20260406_175129615.jpg", "fotos_web/PXL_20260406_183035728.jpg", "fotos_web/PXL_20260406_183047787.PORTRAIT.jpg", "fotos_web/PXL_20260406_222844363.NIGHT.jpg", "fotos_web/PXL_20260406_224721751.MP.jpg"] },
+      { date: "20260407", label: "7. April · Sidi Kaouki & Essaouira", sub: "Strand, Surfen & blaue Medina", photos: ["fotos_web/PXL_20260407_093345058.MP.jpg", "fotos_web/PXL_20260407_093347747.MP.jpg", "fotos_web/PXL_20260407_100912427.jpg", "fotos_web/PXL_20260407_102113228.jpg", "fotos_web/PXL_20260407_102534107.jpg", "fotos_web/PXL_20260407_102924066.PORTRAIT.jpg", "fotos_web/PXL_20260407_104044320.jpg", "fotos_web/PXL_20260407_104124774.jpg", "fotos_web/PXL_20260407_104151338.MP.jpg", "fotos_web/PXL_20260407_104333498.MP.jpg", "fotos_web/PXL_20260407_104404768.jpg", "fotos_web/PXL_20260407_104508077.MP.jpg", "fotos_web/PXL_20260407_104733649.MP.jpg", "fotos_web/PXL_20260407_104741706.MP.jpg", "fotos_web/PXL_20260407_104748591.MP.jpg", "fotos_web/PXL_20260407_105443060.jpg", "fotos_web/PXL_20260407_105445631.jpg", "fotos_web/PXL_20260407_110510708.jpg", "fotos_web/PXL_20260407_110708628.jpg", "fotos_web/PXL_20260407_111404806.jpg", "fotos_web/PXL_20260407_112309903.jpg", "fotos_web/PXL_20260407_112327864.jpg", "fotos_web/PXL_20260407_112934414.MP.jpg", "fotos_web/PXL_20260407_112936692.jpg", "fotos_web/PXL_20260407_112947474.MP.jpg", "fotos_web/PXL_20260407_113242280.jpg", "fotos_web/PXL_20260407_114654831.jpg", "fotos_web/PXL_20260407_114655413.jpg", "fotos_web/PXL_20260407_114656064.jpg", "fotos_web/PXL_20260407_122453285.jpg", "fotos_web/PXL_20260407_122518446.jpg", "fotos_web/PXL_20260407_133643253.MP.jpg", "fotos_web/PXL_20260407_133646617.jpg", "fotos_web/PXL_20260407_142228472.jpg", "fotos_web/PXL_20260407_142819195.jpg", "fotos_web/PXL_20260407_145741284.jpg", "fotos_web/PXL_20260407_222555548.NIGHT.jpg", "fotos_web/PXL_20260407_223013396.MP.jpg"] },
+      { date: "20260408", label: "8. April · Sidi Kaouki", sub: "La Maison des Vagues", photos: ["fotos_web/PXL_20260408_104105181.jpg", "fotos_web/PXL_20260408_104137891.jpg", "fotos_web/PXL_20260408_124642936.MP.jpg", "fotos_web/PXL_20260408_124645313.jpg", "fotos_web/PXL_20260408_134058225.MP.jpg", "fotos_web/PXL_20260408_145650230.MP.jpg", "fotos_web/PXL_20260408_145651407.jpg", "fotos_web/PXL_20260408_145657005.MP.jpg", "fotos_web/PXL_20260408_154048103.MP.jpg", "fotos_web/PXL_20260408_154826120.jpg", "fotos_web/PXL_20260408_161633962.MP.jpg", "fotos_web/PXL_20260408_161636718.MP.jpg", "fotos_web/PXL_20260408_161637494.jpg"] },
+      { date: "20260409", label: "9. April · Sidi Kaouki", sub: "Letzte Tage am Atlantik", photos: ["fotos_web/PXL_20260409_101538771.MP.jpg", "fotos_web/PXL_20260409_103746666.jpg", "fotos_web/PXL_20260409_143334749.MP.jpg", "fotos_web/PXL_20260409_143750092.MP.jpg", "fotos_web/PXL_20260409_143952204.MP.jpg", "fotos_web/PXL_20260409_145111696.MP.jpg", "fotos_web/PXL_20260409_164428730.MP.jpg", "fotos_web/PXL_20260409_164432991.jpg", "fotos_web/PXL_20260409_185447705.MP.jpg", "fotos_web/PXL_20260409_185645297.jpg", "fotos_web/PXL_20260409_185647457.jpg", "fotos_web/PXL_20260409_185652884.jpg"] },
+      { date: "20260410", label: "10. April · Fahrt nach Casablanca", sub: "Safi, El Jadida & Casablanca", photos: ["fotos_web/PXL_20260410_084638453.MP.jpg", "fotos_web/PXL_20260410_115649905.MP.jpg", "fotos_web/PXL_20260410_115655306.jpg", "fotos_web/PXL_20260410_172336825.jpg"] },
+      { date: "20260412", label: "12. April · Zuhause", sub: "Ankunft Tangstedt 🏠", photos: ["fotos_web/PXL_20260412_152031486.MP.jpg", "fotos_web/PXL_20260412_152040319.MP.jpg", "fotos_web/PXL_20260412_152041288.jpg", "fotos_web/PXL_20260412_152042390.jpg"] },
+    ];
+    
+    const FOTO_METADATA = {
+      "die-drei.jpg":["fotos_web/die-drei.jpg","Vor der Reise","","Zuhause, Tangstedt","Piet, Karlo & Pepe auf dem Sofa zuhause in Tangstedt – bereit für Marokko"],
+      "PXL_20260328_122016085.MP.jpg":["fotos_web/PXL_20260328_122016085.MP.jpg","28.03.2026","12:20 Uhr","Abfahrt Tangstedt · Schiphol · Casablanca","Pepe sitzt im offenen Kofferraum beim Park & Fly Schiphol, Marlene packt"],
+      "PXL_20260328_122019914.jpg":["fotos_web/PXL_20260328_122019914.jpg","28.03.2026","12:20 Uhr","Abfahrt Tangstedt · Schiphol · Casablanca",""],
+      "PXL_20260328_122021850.jpg":["fotos_web/PXL_20260328_122021850.jpg","28.03.2026","12:20 Uhr","Abfahrt Tangstedt · Schiphol · Casablanca",""],
+      "PXL_20260328_131014183.jpg":["fotos_web/PXL_20260328_131014183.jpg","28.03.2026","13:10 Uhr","Abfahrt Tangstedt · Schiphol · Casablanca","Marlene schiebt Pepe im Einkaufswagen durch Flughafen Schiphol"],
+      "PXL_20260328_164428006.MP.jpg":["fotos_web/PXL_20260328_164428006.MP.jpg","28.03.2026","16:44 Uhr","Abfahrt Tangstedt · Schiphol · Casablanca",""],
+      "PXL_20260328_164435412.jpg":["fotos_web/PXL_20260328_164435412.jpg","28.03.2026","16:44 Uhr","Abfahrt Tangstedt · Schiphol · Casablanca","Familie im Flugzeug – Hinflug Royal Air Maroc nach Casablanca"],
+      "PXL_20260329_084151303.MP.jpg":["fotos_web/PXL_20260329_084151303.MP.jpg","29.03.2026","08:41 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt","Erste Morgenstunde in Marokko – Palmen spiegeln sich auf Motorhaube"],
+      "PXL_20260329_084154669.MP.jpg":["fotos_web/PXL_20260329_084154669.MP.jpg","29.03.2026","08:41 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_084206148.jpg":["fotos_web/PXL_20260329_084206148.jpg","29.03.2026","08:42 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_084211232.MP.jpg":["fotos_web/PXL_20260329_084211232.MP.jpg","29.03.2026","08:42 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_084220564.MP.jpg":["fotos_web/PXL_20260329_084220564.MP.jpg","29.03.2026","08:42 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_085507184.MP.jpg":["fotos_web/PXL_20260329_085507184.MP.jpg","29.03.2026","08:55 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_090331662.MP.jpg":["fotos_web/PXL_20260329_090331662.MP.jpg","29.03.2026","09:03 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt","Frühstückskarte eines marokkanischen Cafes (franz./arab.)"],
+      "PXL_20260329_091724444.MP.jpg":["fotos_web/PXL_20260329_091724444.MP.jpg","29.03.2026","09:17 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_164729629.MP.jpg":["fotos_web/PXL_20260329_164729629.MP.jpg","29.03.2026","16:47 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_164731307.jpg":["fotos_web/PXL_20260329_164731307.jpg","29.03.2026","16:47 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_171822262.MP.jpg":["fotos_web/PXL_20260329_171822262.MP.jpg","29.03.2026","17:18 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_171822931.jpg":["fotos_web/PXL_20260329_171822931.jpg","29.03.2026","17:18 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_171825542.jpg":["fotos_web/PXL_20260329_171825542.jpg","29.03.2026","17:18 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_171826822.jpg":["fotos_web/PXL_20260329_171826822.jpg","29.03.2026","17:18 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt","Familie vor einer Steinskulptur in Ifrane (europäisches Stadtbild)"],
+      "PXL_20260329_171844767.MP.jpg":["fotos_web/PXL_20260329_171844767.MP.jpg","29.03.2026","17:18 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_171845769.jpg":["fotos_web/PXL_20260329_171845769.jpg","29.03.2026","17:18 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_171846045.jpg":["fotos_web/PXL_20260329_171846045.jpg","29.03.2026","17:18 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_172335505.MP.jpg":["fotos_web/PXL_20260329_172335505.MP.jpg","29.03.2026","17:23 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_172337197.jpg":["fotos_web/PXL_20260329_172337197.jpg","29.03.2026","17:23 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_172339157.jpg":["fotos_web/PXL_20260329_172339157.jpg","29.03.2026","17:23 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt","Europäisch anmutendes Tudor-Haus in Ifrane – Schweiz Marokkos"],
+      "PXL_20260329_172353723.MP.jpg":["fotos_web/PXL_20260329_172353723.MP.jpg","29.03.2026","17:23 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_172359544.MP.jpg":["fotos_web/PXL_20260329_172359544.MP.jpg","29.03.2026","17:23 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_180714089.MP.jpg":["fotos_web/PXL_20260329_180714089.MP.jpg","29.03.2026","18:07 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_220922859.MP.jpg":["fotos_web/PXL_20260329_220922859.MP.jpg","29.03.2026","22:09 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_220923843.jpg":["fotos_web/PXL_20260329_220923843.jpg","29.03.2026","22:09 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt",""],
+      "PXL_20260329_220927292.jpg":["fotos_web/PXL_20260329_220927292.jpg","29.03.2026","22:09 Uhr","Hoher Atlas · Azrou · Ifrane · Midelt","Hotelzimmer in Midelt mit prachtvoller Stuckdecke"],
+      "PXL_20260330_074139486.MP.jpg":["fotos_web/PXL_20260330_074139486.MP.jpg","30.03.2026","07:41 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga","Straße in Midelt mit schneebedecktem Atlasgebirge im Hintergrund"],
+      "PXL_20260330_090331949.jpg":["fotos_web/PXL_20260330_090331949.jpg","30.03.2026","09:03 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_090350108.MP.jpg":["fotos_web/PXL_20260330_090350108.MP.jpg","30.03.2026","09:03 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_090401750.MP.jpg":["fotos_web/PXL_20260330_090401750.MP.jpg","30.03.2026","09:04 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_092548741.MP.jpg":["fotos_web/PXL_20260330_092548741.MP.jpg","30.03.2026","09:25 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_092556236.jpg":["fotos_web/PXL_20260330_092556236.jpg","30.03.2026","09:25 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_092558790.MP.jpg":["fotos_web/PXL_20260330_092558790.MP.jpg","30.03.2026","09:25 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_095754657.jpg":["fotos_web/PXL_20260330_095754657.jpg","30.03.2026","09:57 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_095756046.jpg":["fotos_web/PXL_20260330_095756046.jpg","30.03.2026","09:57 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_095805910.jpg":["fotos_web/PXL_20260330_095805910.jpg","30.03.2026","09:58 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_095819568.jpg":["fotos_web/PXL_20260330_095819568.jpg","30.03.2026","09:58 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_100007092.MP.jpg":["fotos_web/PXL_20260330_100007092.MP.jpg","30.03.2026","10:00 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga","Raststätte in der Wüste – marokkanische Kacheln, Hinweisschild"],
+      "PXL_20260330_100657265.MP.jpg":["fotos_web/PXL_20260330_100657265.MP.jpg","30.03.2026","10:06 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_105947547.MP.jpg":["fotos_web/PXL_20260330_105947547.MP.jpg","30.03.2026","10:59 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_110217341.MP.jpg":["fotos_web/PXL_20260330_110217341.MP.jpg","30.03.2026","11:02 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_110252791.jpg":["fotos_web/PXL_20260330_110252791.jpg","30.03.2026","11:02 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_112121303.jpg":["fotos_web/PXL_20260330_112121303.jpg","30.03.2026","11:21 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_112315113.jpg":["fotos_web/PXL_20260330_112315113.jpg","30.03.2026","11:23 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_113557781.MP.jpg":["fotos_web/PXL_20260330_113557781.MP.jpg","30.03.2026","11:35 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_113840376.jpg":["fotos_web/PXL_20260330_113840376.jpg","30.03.2026","11:38 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_114314587.MP.jpg":["fotos_web/PXL_20260330_114314587.MP.jpg","30.03.2026","11:43 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_122109058.jpg":["fotos_web/PXL_20260330_122109058.jpg","30.03.2026","12:21 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_144455074.MP.jpg":["fotos_web/PXL_20260330_144455074.MP.jpg","30.03.2026","14:44 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga","Einheimischer Händler unter Schilfdach, Familie beim Schauen"],
+      "PXL_20260330_144457165.jpg":["fotos_web/PXL_20260330_144457165.jpg","30.03.2026","14:44 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_144614869.MP.jpg":["fotos_web/PXL_20260330_144614869.MP.jpg","30.03.2026","14:46 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_144626699.jpg":["fotos_web/PXL_20260330_144626699.jpg","30.03.2026","14:46 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_144938306.MP.jpg":["fotos_web/PXL_20260330_144938306.MP.jpg","30.03.2026","14:49 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_162531307.MP.jpg":["fotos_web/PXL_20260330_162531307.MP.jpg","30.03.2026","16:25 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_162834652.MP.jpg":["fotos_web/PXL_20260330_162834652.MP.jpg","30.03.2026","16:28 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_164412704.MP.jpg":["fotos_web/PXL_20260330_164412704.MP.jpg","30.03.2026","16:44 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_164421399.MP.jpg":["fotos_web/PXL_20260330_164421399.MP.jpg","30.03.2026","16:44 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_164425325.MP.jpg":["fotos_web/PXL_20260330_164425325.MP.jpg","30.03.2026","16:44 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_164518174.MP.jpg":["fotos_web/PXL_20260330_164518174.MP.jpg","30.03.2026","16:45 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_164527768.MP.jpg":["fotos_web/PXL_20260330_164527768.MP.jpg","30.03.2026","16:45 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga","Blick durch maurischen Torbogen auf Hotel Sunset Palace Innenhof"],
+      "PXL_20260330_164534404.MP.jpg":["fotos_web/PXL_20260330_164534404.MP.jpg","30.03.2026","16:45 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_164538536.jpg":["fotos_web/PXL_20260330_164538536.jpg","30.03.2026","16:45 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_164555400.jpg":["fotos_web/PXL_20260330_164555400.jpg","30.03.2026","16:45 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_171113107.jpg":["fotos_web/PXL_20260330_171113107.jpg","30.03.2026","17:11 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_171117143.jpg":["fotos_web/PXL_20260330_171117143.jpg","30.03.2026","17:11 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_171345305.jpg":["fotos_web/PXL_20260330_171345305.jpg","30.03.2026","17:13 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_171803076.jpg":["fotos_web/PXL_20260330_171803076.jpg","30.03.2026","17:18 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_172502455.jpg":["fotos_web/PXL_20260330_172502455.jpg","30.03.2026","17:25 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_182451828.jpg":["fotos_web/PXL_20260330_182451828.jpg","30.03.2026","18:24 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_182504383.jpg":["fotos_web/PXL_20260330_182504383.jpg","30.03.2026","18:25 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga",""],
+      "PXL_20260330_182504617.jpg":["fotos_web/PXL_20260330_182504617.jpg","30.03.2026","18:25 Uhr","Sahara-Fahrt · Ziz-Tal · Erfoud · Merzouga","Spektakulärer Sonnenuntergang über Merzouga – goldorangener Himmel"],
+      "PXL_20260331_085015839.jpg":["fotos_web/PXL_20260331_085015839.jpg","31.03.2026","08:50 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace","Pepe lacht strahlend in die Kamera, von Marlene gehalten (Sunset Palace)"],
+      "PXL_20260331_085030528.MP.jpg":["fotos_web/PXL_20260331_085030528.MP.jpg","31.03.2026","08:50 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_085800879.MP.jpg":["fotos_web/PXL_20260331_085800879.MP.jpg","31.03.2026","08:58 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_090901547.jpg":["fotos_web/PXL_20260331_090901547.jpg","31.03.2026","09:09 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_091049167.jpg":["fotos_web/PXL_20260331_091049167.jpg","31.03.2026","09:10 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_091229443.jpg":["fotos_web/PXL_20260331_091229443.jpg","31.03.2026","09:12 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_093518457.jpg":["fotos_web/PXL_20260331_093518457.jpg","31.03.2026","09:35 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_093522208.jpg":["fotos_web/PXL_20260331_093522208.jpg","31.03.2026","09:35 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_093529112.jpg":["fotos_web/PXL_20260331_093529112.jpg","31.03.2026","09:35 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_093530985.jpg":["fotos_web/PXL_20260331_093530985.jpg","31.03.2026","09:35 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_093606301.jpg":["fotos_web/PXL_20260331_093606301.jpg","31.03.2026","09:36 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_093609236.jpg":["fotos_web/PXL_20260331_093609236.jpg","31.03.2026","09:36 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_093951552.MP.jpg":["fotos_web/PXL_20260331_093951552.MP.jpg","31.03.2026","09:39 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_093952697.jpg":["fotos_web/PXL_20260331_093952697.jpg","31.03.2026","09:39 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace","Marlene streichelt Kamele vor blauem Himmel in Merzouga"],
+      "PXL_20260331_093954118.jpg":["fotos_web/PXL_20260331_093954118.jpg","31.03.2026","09:39 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_094244090.jpg":["fotos_web/PXL_20260331_094244090.jpg","31.03.2026","09:42 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_094307345.PORTRAIT.ORIGINAL.jpg":["fotos_web/PXL_20260331_094307345.PORTRAIT.ORIGINAL.jpg","31.03.2026","09:43 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_094503440.jpg":["fotos_web/PXL_20260331_094503440.jpg","31.03.2026","09:45 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_100001576.jpg":["fotos_web/PXL_20260331_100001576.jpg","31.03.2026","10:00 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_100305844.MP.jpg":["fotos_web/PXL_20260331_100305844.MP.jpg","31.03.2026","10:03 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_100309137.jpg":["fotos_web/PXL_20260331_100309137.jpg","31.03.2026","10:03 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_112001345.jpg":["fotos_web/PXL_20260331_112001345.jpg","31.03.2026","11:20 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_115855383.jpg":["fotos_web/PXL_20260331_115855383.jpg","31.03.2026","11:58 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_143150727.jpg":["fotos_web/PXL_20260331_143150727.jpg","31.03.2026","14:31 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_143157793.MP.jpg":["fotos_web/PXL_20260331_143157793.MP.jpg","31.03.2026","14:31 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_143708349.jpg":["fotos_web/PXL_20260331_143708349.jpg","31.03.2026","14:37 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_143713514.jpg":["fotos_web/PXL_20260331_143713514.jpg","31.03.2026","14:37 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace","Karlo zeigt seinen Bauch vor rosa-gelber Wand – Björn im Hintergrund"],
+      "PXL_20260331_143728013.jpg":["fotos_web/PXL_20260331_143728013.jpg","31.03.2026","14:37 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_143728425.jpg":["fotos_web/PXL_20260331_143728425.jpg","31.03.2026","14:37 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_143729960.MP.jpg":["fotos_web/PXL_20260331_143729960.MP.jpg","31.03.2026","14:37 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_143730260.jpg":["fotos_web/PXL_20260331_143730260.jpg","31.03.2026","14:37 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_143736642.jpg":["fotos_web/PXL_20260331_143736642.jpg","31.03.2026","14:37 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_143737154.jpg":["fotos_web/PXL_20260331_143737154.jpg","31.03.2026","14:37 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_143737353.jpg":["fotos_web/PXL_20260331_143737353.jpg","31.03.2026","14:37 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_143740996.jpg":["fotos_web/PXL_20260331_143740996.jpg","31.03.2026","14:37 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_143741484.jpg":["fotos_web/PXL_20260331_143741484.jpg","31.03.2026","14:37 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_143741725.jpg":["fotos_web/PXL_20260331_143741725.jpg","31.03.2026","14:37 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_143750657.jpg":["fotos_web/PXL_20260331_143750657.jpg","31.03.2026","14:37 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_143750989.jpg":["fotos_web/PXL_20260331_143750989.jpg","31.03.2026","14:37 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_143751317.jpg":["fotos_web/PXL_20260331_143751317.jpg","31.03.2026","14:37 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace","Björn & Marlene Pärchenfoto vor rosa-gelber Wand in Merzouga"],
+      "PXL_20260331_171224811.jpg":["fotos_web/PXL_20260331_171224811.jpg","31.03.2026","17:12 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_171225471.jpg":["fotos_web/PXL_20260331_171225471.jpg","31.03.2026","17:12 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_171228070.jpg":["fotos_web/PXL_20260331_171228070.jpg","31.03.2026","17:12 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_175957590.jpg":["fotos_web/PXL_20260331_175957590.jpg","31.03.2026","17:59 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_180023492.MP.jpg":["fotos_web/PXL_20260331_180023492.MP.jpg","31.03.2026","18:00 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_180040595.jpg":["fotos_web/PXL_20260331_180040595.jpg","31.03.2026","18:00 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_182101942.MP.jpg":["fotos_web/PXL_20260331_182101942.MP.jpg","31.03.2026","18:21 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_182109884.MP.jpg":["fotos_web/PXL_20260331_182109884.MP.jpg","31.03.2026","18:21 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_182238530.MP.jpg":["fotos_web/PXL_20260331_182238530.MP.jpg","31.03.2026","18:22 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_182241284.MP.jpg":["fotos_web/PXL_20260331_182241284.MP.jpg","31.03.2026","18:22 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_182244551.MP.jpg":["fotos_web/PXL_20260331_182244551.MP.jpg","31.03.2026","18:22 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_182443676.jpg":["fotos_web/PXL_20260331_182443676.jpg","31.03.2026","18:24 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace",""],
+      "PXL_20260331_183914619.MP.jpg":["fotos_web/PXL_20260331_183914619.MP.jpg","31.03.2026","18:39 Uhr","Merzouga · Erg Chebbi Dünen · Sunset Palace","Sonnenuntergang über den Erg Chebbi Dünen – Silhouetten und Orange"],
+      "PXL_20260401_070143568.MP.jpg":["fotos_web/PXL_20260401_070143568.MP.jpg","01.04.2026","07:01 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi","Kinder liegen im Luxuszelt, schauen durch arabisch verzierte Fenster auf Dünen"],
+      "PXL_20260401_070152084.MP.jpg":["fotos_web/PXL_20260401_070152084.MP.jpg","01.04.2026","07:01 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_074137997.PORTRAIT.jpg":["fotos_web/PXL_20260401_074137997.PORTRAIT.jpg","01.04.2026","07:41 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_081153606.jpg":["fotos_web/PXL_20260401_081153606.jpg","01.04.2026","08:11 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_081200601.jpg":["fotos_web/PXL_20260401_081200601.jpg","01.04.2026","08:12 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_081204931.jpg":["fotos_web/PXL_20260401_081204931.jpg","01.04.2026","08:12 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_081239269.MP.jpg":["fotos_web/PXL_20260401_081239269.MP.jpg","01.04.2026","08:12 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_081247556.MP.jpg":["fotos_web/PXL_20260401_081247556.MP.jpg","01.04.2026","08:12 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_083751386.PORTRAIT.jpg":["fotos_web/PXL_20260401_083751386.PORTRAIT.jpg","01.04.2026","08:37 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_093448923.MP.jpg":["fotos_web/PXL_20260401_093448923.MP.jpg","01.04.2026","09:34 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_093451016.jpg":["fotos_web/PXL_20260401_093451016.jpg","01.04.2026","09:34 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_093453858.MP.jpg":["fotos_web/PXL_20260401_093453858.MP.jpg","01.04.2026","09:34 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_094811594.MP.jpg":["fotos_web/PXL_20260401_094811594.MP.jpg","01.04.2026","09:48 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_095102431.PORTRAIT.ORIGINAL.jpg":["fotos_web/PXL_20260401_095102431.PORTRAIT.ORIGINAL.jpg","01.04.2026","09:51 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_095417932.MP.jpg":["fotos_web/PXL_20260401_095417932.MP.jpg","01.04.2026","09:54 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_100301402.MP.jpg":["fotos_web/PXL_20260401_100301402.MP.jpg","01.04.2026","10:03 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_100303585.MP.jpg":["fotos_web/PXL_20260401_100303585.MP.jpg","01.04.2026","10:03 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_101359719.PORTRAIT.jpg":["fotos_web/PXL_20260401_101359719.PORTRAIT.jpg","01.04.2026","10:13 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_110751904.MP.jpg":["fotos_web/PXL_20260401_110751904.MP.jpg","01.04.2026","11:07 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_110803623.PANO.jpg":["fotos_web/PXL_20260401_110803623.PANO.jpg","01.04.2026","11:08 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_110825330.PANO.jpg":["fotos_web/PXL_20260401_110825330.PANO.jpg","01.04.2026","11:08 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_110848203.PANO.jpg":["fotos_web/PXL_20260401_110848203.PANO.jpg","01.04.2026","11:08 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_111005526.PORTRAIT.jpg":["fotos_web/PXL_20260401_111005526.PORTRAIT.jpg","01.04.2026","11:10 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_111150231.MP.jpg":["fotos_web/PXL_20260401_111150231.MP.jpg","01.04.2026","11:11 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_111208549.MP.jpg":["fotos_web/PXL_20260401_111208549.MP.jpg","01.04.2026","11:12 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_111211434.MP.jpg":["fotos_web/PXL_20260401_111211434.MP.jpg","01.04.2026","11:12 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi","Familie auf Felskuppe mit Blick auf die roten Erg Chebbi Dünen"],
+      "PXL_20260401_111214354.MP.jpg":["fotos_web/PXL_20260401_111214354.MP.jpg","01.04.2026","11:12 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_111225433.MP.jpg":["fotos_web/PXL_20260401_111225433.MP.jpg","01.04.2026","11:12 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_112008945.jpg":["fotos_web/PXL_20260401_112008945.jpg","01.04.2026","11:20 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_112012847.jpg":["fotos_web/PXL_20260401_112012847.jpg","01.04.2026","11:20 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_115458003.MP.jpg":["fotos_web/PXL_20260401_115458003.MP.jpg","01.04.2026","11:54 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_115458365.jpg":["fotos_web/PXL_20260401_115458365.jpg","01.04.2026","11:54 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_115458571.jpg":["fotos_web/PXL_20260401_115458571.jpg","01.04.2026","11:54 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_115458781.jpg":["fotos_web/PXL_20260401_115458781.jpg","01.04.2026","11:54 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_115517939.PORTRAIT.jpg":["fotos_web/PXL_20260401_115517939.PORTRAIT.jpg","01.04.2026","11:55 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_115518372.PORTRAIT.jpg":["fotos_web/PXL_20260401_115518372.PORTRAIT.jpg","01.04.2026","11:55 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_115611071.PORTRAIT.jpg":["fotos_web/PXL_20260401_115611071.PORTRAIT.jpg","01.04.2026","11:56 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_115611612.PORTRAIT.jpg":["fotos_web/PXL_20260401_115611612.PORTRAIT.jpg","01.04.2026","11:56 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_115611821.PORTRAIT.jpg":["fotos_web/PXL_20260401_115611821.PORTRAIT.jpg","01.04.2026","11:56 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_115612021.PORTRAIT.jpg":["fotos_web/PXL_20260401_115612021.PORTRAIT.jpg","01.04.2026","11:56 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_115612523.PORTRAIT.jpg":["fotos_web/PXL_20260401_115612523.PORTRAIT.jpg","01.04.2026","11:56 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_115612711.PORTRAIT.jpg":["fotos_web/PXL_20260401_115612711.PORTRAIT.jpg","01.04.2026","11:56 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_115623901.PORTRAIT.jpg":["fotos_web/PXL_20260401_115623901.PORTRAIT.jpg","01.04.2026","11:56 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_115628969.PORTRAIT.jpg":["fotos_web/PXL_20260401_115628969.PORTRAIT.jpg","01.04.2026","11:56 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_115629314.PORTRAIT.jpg":["fotos_web/PXL_20260401_115629314.PORTRAIT.jpg","01.04.2026","11:56 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_115629713.PORTRAIT.jpg":["fotos_web/PXL_20260401_115629713.PORTRAIT.jpg","01.04.2026","11:56 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_133749603.jpg":["fotos_web/PXL_20260401_133749603.jpg","01.04.2026","13:37 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_134600426.jpg":["fotos_web/PXL_20260401_134600426.jpg","01.04.2026","13:46 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_134644016.PORTRAIT.jpg":["fotos_web/PXL_20260401_134644016.PORTRAIT.jpg","01.04.2026","13:46 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_134651329.PORTRAIT.jpg":["fotos_web/PXL_20260401_134651329.PORTRAIT.jpg","01.04.2026","13:46 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_134653602.PORTRAIT.jpg":["fotos_web/PXL_20260401_134653602.PORTRAIT.jpg","01.04.2026","13:46 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_134657130.PORTRAIT.jpg":["fotos_web/PXL_20260401_134657130.PORTRAIT.jpg","01.04.2026","13:46 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi","Pepe lacht ausgelassen beim Hut-Anziehen in der Wüste"],
+      "PXL_20260401_134700430.PORTRAIT.jpg":["fotos_web/PXL_20260401_134700430.PORTRAIT.jpg","01.04.2026","13:47 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_134703360.PORTRAIT.jpg":["fotos_web/PXL_20260401_134703360.PORTRAIT.jpg","01.04.2026","13:47 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_134706780.PORTRAIT.jpg":["fotos_web/PXL_20260401_134706780.PORTRAIT.jpg","01.04.2026","13:47 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_134710304.PORTRAIT.jpg":["fotos_web/PXL_20260401_134710304.PORTRAIT.jpg","01.04.2026","13:47 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_134711578.PORTRAIT.jpg":["fotos_web/PXL_20260401_134711578.PORTRAIT.jpg","01.04.2026","13:47 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_134712515.PORTRAIT.jpg":["fotos_web/PXL_20260401_134712515.PORTRAIT.jpg","01.04.2026","13:47 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_135022748.PORTRAIT.jpg":["fotos_web/PXL_20260401_135022748.PORTRAIT.jpg","01.04.2026","13:50 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_135033361.PORTRAIT.jpg":["fotos_web/PXL_20260401_135033361.PORTRAIT.jpg","01.04.2026","13:50 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_135036829.PORTRAIT.jpg":["fotos_web/PXL_20260401_135036829.PORTRAIT.jpg","01.04.2026","13:50 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_135047940.PORTRAIT.jpg":["fotos_web/PXL_20260401_135047940.PORTRAIT.jpg","01.04.2026","13:50 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_141231153.MP.jpg":["fotos_web/PXL_20260401_141231153.MP.jpg","01.04.2026","14:12 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_141235164.MP.jpg":["fotos_web/PXL_20260401_141235164.MP.jpg","01.04.2026","14:12 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_141237821.MP.jpg":["fotos_web/PXL_20260401_141237821.MP.jpg","01.04.2026","14:12 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_141743954.MP.jpg":["fotos_web/PXL_20260401_141743954.MP.jpg","01.04.2026","14:17 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171118667.jpg":["fotos_web/PXL_20260401_171118667.jpg","01.04.2026","17:11 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171121128.jpg":["fotos_web/PXL_20260401_171121128.jpg","01.04.2026","17:11 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171138793.MP.jpg":["fotos_web/PXL_20260401_171138793.MP.jpg","01.04.2026","17:11 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171144189.jpg":["fotos_web/PXL_20260401_171144189.jpg","01.04.2026","17:11 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171148457.jpg":["fotos_web/PXL_20260401_171148457.jpg","01.04.2026","17:11 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171150786.jpg":["fotos_web/PXL_20260401_171150786.jpg","01.04.2026","17:11 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171234467.jpg":["fotos_web/PXL_20260401_171234467.jpg","01.04.2026","17:12 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171236998.jpg":["fotos_web/PXL_20260401_171236998.jpg","01.04.2026","17:12 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171238477.jpg":["fotos_web/PXL_20260401_171238477.jpg","01.04.2026","17:12 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171241033.jpg":["fotos_web/PXL_20260401_171241033.jpg","01.04.2026","17:12 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171247990.jpg":["fotos_web/PXL_20260401_171247990.jpg","01.04.2026","17:12 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi","Marlene & Karlo auf Kamelritt, Björn reitet im Hintergrund – Erg Chebbi"],
+      "PXL_20260401_171304366.jpg":["fotos_web/PXL_20260401_171304366.jpg","01.04.2026","17:13 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171333220.jpg":["fotos_web/PXL_20260401_171333220.jpg","01.04.2026","17:13 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171336888.jpg":["fotos_web/PXL_20260401_171336888.jpg","01.04.2026","17:13 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171338009.jpg":["fotos_web/PXL_20260401_171338009.jpg","01.04.2026","17:13 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171348681.jpg":["fotos_web/PXL_20260401_171348681.jpg","01.04.2026","17:13 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171352240.jpg":["fotos_web/PXL_20260401_171352240.jpg","01.04.2026","17:13 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171400947.jpg":["fotos_web/PXL_20260401_171400947.jpg","01.04.2026","17:14 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171404567.jpg":["fotos_web/PXL_20260401_171404567.jpg","01.04.2026","17:14 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171808966.jpg":["fotos_web/PXL_20260401_171808966.jpg","01.04.2026","17:18 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171812490.jpg":["fotos_web/PXL_20260401_171812490.jpg","01.04.2026","17:18 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171817051.MP.jpg":["fotos_web/PXL_20260401_171817051.MP.jpg","01.04.2026","17:18 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171821918.jpg":["fotos_web/PXL_20260401_171821918.jpg","01.04.2026","17:18 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171823272.jpg":["fotos_web/PXL_20260401_171823272.jpg","01.04.2026","17:18 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_171845512.jpg":["fotos_web/PXL_20260401_171845512.jpg","01.04.2026","17:18 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_173055344.jpg":["fotos_web/PXL_20260401_173055344.jpg","01.04.2026","17:30 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_173100839.jpg":["fotos_web/PXL_20260401_173100839.jpg","01.04.2026","17:31 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_173109304.jpg":["fotos_web/PXL_20260401_173109304.jpg","01.04.2026","17:31 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_173543347.MP.jpg":["fotos_web/PXL_20260401_173543347.MP.jpg","01.04.2026","17:35 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_173626074.jpg":["fotos_web/PXL_20260401_173626074.jpg","01.04.2026","17:36 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_173630000.jpg":["fotos_web/PXL_20260401_173630000.jpg","01.04.2026","17:36 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_173637145.jpg":["fotos_web/PXL_20260401_173637145.jpg","01.04.2026","17:36 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_180246447.PORTRAIT.jpg":["fotos_web/PXL_20260401_180246447.PORTRAIT.jpg","01.04.2026","18:02 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_180248621.PORTRAIT.jpg":["fotos_web/PXL_20260401_180248621.PORTRAIT.jpg","01.04.2026","18:02 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_180250219.PORTRAIT.jpg":["fotos_web/PXL_20260401_180250219.PORTRAIT.jpg","01.04.2026","18:02 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi",""],
+      "PXL_20260401_195438904.jpg":["fotos_web/PXL_20260401_195438904.jpg","01.04.2026","19:54 Uhr","Merzouga · Sahara Luxury Glamping · Erg Chebbi","Pepe posiert mit riesiger Sonnenbrille im Glamping-Zelt – cool!"],
+      "PXL_20260402_060736437.jpg":["fotos_web/PXL_20260402_060736437.jpg","02.04.2026","06:07 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate","Sonnenaufgang über den Erg Chebbi Dünen – intensives Orange-Grau"],
+      "PXL_20260402_060856510.jpg":["fotos_web/PXL_20260402_060856510.jpg","02.04.2026","06:08 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_060912732.LONG_EXPOSURE-01.jpg":["fotos_web/PXL_20260402_060912732.LONG_EXPOSURE-01.jpg","02.04.2026","06:09 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_060943316.jpg":["fotos_web/PXL_20260402_060943316.jpg","02.04.2026","06:09 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_060947329.jpg":["fotos_web/PXL_20260402_060947329.jpg","02.04.2026","06:09 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_061113685.PANO.jpg":["fotos_web/PXL_20260402_061113685.PANO.jpg","02.04.2026","06:11 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_082550160.jpg":["fotos_web/PXL_20260402_082550160.jpg","02.04.2026","08:25 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_082556829.jpg":["fotos_web/PXL_20260402_082556829.jpg","02.04.2026","08:25 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_082601400.jpg":["fotos_web/PXL_20260402_082601400.jpg","02.04.2026","08:26 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_082634349.jpg":["fotos_web/PXL_20260402_082634349.jpg","02.04.2026","08:26 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_082647499.jpg":["fotos_web/PXL_20260402_082647499.jpg","02.04.2026","08:26 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate","Björn sitzt rückwärts auf Fahrzeug mit Blick auf rote Dünen"],
+      "PXL_20260402_082654584.jpg":["fotos_web/PXL_20260402_082654584.jpg","02.04.2026","08:26 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_130933972.jpg":["fotos_web/PXL_20260402_130933972.jpg","02.04.2026","13:09 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_131025290.jpg":["fotos_web/PXL_20260402_131025290.jpg","02.04.2026","13:10 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_131111996.jpg":["fotos_web/PXL_20260402_131111996.jpg","02.04.2026","13:11 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_131631245.jpg":["fotos_web/PXL_20260402_131631245.jpg","02.04.2026","13:16 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_131642716.jpg":["fotos_web/PXL_20260402_131642716.jpg","02.04.2026","13:16 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_131659237.jpg":["fotos_web/PXL_20260402_131659237.jpg","02.04.2026","13:16 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_131708840.PORTRAIT.jpg":["fotos_web/PXL_20260402_131708840.PORTRAIT.jpg","02.04.2026","13:17 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_131732241.PORTRAIT.jpg":["fotos_web/PXL_20260402_131732241.PORTRAIT.jpg","02.04.2026","13:17 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_131940181.jpg":["fotos_web/PXL_20260402_131940181.jpg","02.04.2026","13:19 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_131943720.jpg":["fotos_web/PXL_20260402_131943720.jpg","02.04.2026","13:19 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate","Todra-Schlucht – Marlene laeuft entlang schroffer Felswände am Bach"],
+      "PXL_20260402_133303898.PORTRAIT.jpg":["fotos_web/PXL_20260402_133303898.PORTRAIT.jpg","02.04.2026","13:33 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_134701615.PORTRAIT.jpg":["fotos_web/PXL_20260402_134701615.PORTRAIT.jpg","02.04.2026","13:47 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_135103140.jpg":["fotos_web/PXL_20260402_135103140.jpg","02.04.2026","13:51 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_135108056.MP.jpg":["fotos_web/PXL_20260402_135108056.MP.jpg","02.04.2026","13:51 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_135133413.jpg":["fotos_web/PXL_20260402_135133413.jpg","02.04.2026","13:51 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_140328227.MP.jpg":["fotos_web/PXL_20260402_140328227.MP.jpg","02.04.2026","14:03 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_140804336.jpg":["fotos_web/PXL_20260402_140804336.jpg","02.04.2026","14:08 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_140809042.jpg":["fotos_web/PXL_20260402_140809042.jpg","02.04.2026","14:08 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_142633978.jpg":["fotos_web/PXL_20260402_142633978.jpg","02.04.2026","14:26 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_142757723.jpg":["fotos_web/PXL_20260402_142757723.jpg","02.04.2026","14:27 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate","Todra-Schlucht – dramatisch enge Schlucht mit roten Felswänden"],
+      "PXL_20260402_153311373.jpg":["fotos_web/PXL_20260402_153311373.jpg","02.04.2026","15:33 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_153512335.jpg":["fotos_web/PXL_20260402_153512335.jpg","02.04.2026","15:35 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_170038560.MP.jpg":["fotos_web/PXL_20260402_170038560.MP.jpg","02.04.2026","17:00 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_174812163.jpg":["fotos_web/PXL_20260402_174812163.jpg","02.04.2026","17:48 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_174814994.jpg":["fotos_web/PXL_20260402_174814994.jpg","02.04.2026","17:48 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_180043349.jpg":["fotos_web/PXL_20260402_180043349.jpg","02.04.2026","18:00 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_180442653.jpg":["fotos_web/PXL_20260402_180442653.jpg","02.04.2026","18:04 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_180444836.jpg":["fotos_web/PXL_20260402_180444836.jpg","02.04.2026","18:04 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_180450051.jpg":["fotos_web/PXL_20260402_180450051.jpg","02.04.2026","18:04 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate",""],
+      "PXL_20260402_193734193.MP.jpg":["fotos_web/PXL_20260402_193734193.MP.jpg","02.04.2026","19:37 Uhr","Todra-Schlucht · Dadès-Tal · Ouarzazate","Tajine auf dem Tisch im Restaurant in Ouarzazate"],
+      "PXL_20260403_104859264.MP.jpg":["fotos_web/PXL_20260403_104859264.MP.jpg","03.04.2026","10:48 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch","Ait Benhaddou – Panorama der UNESCO-Kasba von der Brücke"],
+      "PXL_20260403_104906355.MP.jpg":["fotos_web/PXL_20260403_104906355.MP.jpg","03.04.2026","10:49 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_105000989.MP.jpg":["fotos_web/PXL_20260403_105000989.MP.jpg","03.04.2026","10:50 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_105001978.jpg":["fotos_web/PXL_20260403_105001978.jpg","03.04.2026","10:50 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_105002835.jpg":["fotos_web/PXL_20260403_105002835.jpg","03.04.2026","10:50 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_105004615.jpg":["fotos_web/PXL_20260403_105004615.jpg","03.04.2026","10:50 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_105005865.jpg":["fotos_web/PXL_20260403_105005865.jpg","03.04.2026","10:50 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_105006453.jpg":["fotos_web/PXL_20260403_105006453.jpg","03.04.2026","10:50 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch","Familie auf Brücke vor der imposanten Ait Benhaddou Kasba"],
+      "PXL_20260403_110918980.PANO.jpg":["fotos_web/PXL_20260403_110918980.PANO.jpg","03.04.2026","11:09 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_111038310.jpg":["fotos_web/PXL_20260403_111038310.jpg","03.04.2026","11:10 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_113710628.jpg":["fotos_web/PXL_20260403_113710628.jpg","03.04.2026","11:37 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_125208187.MP.jpg":["fotos_web/PXL_20260403_125208187.MP.jpg","03.04.2026","12:52 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_125209419.jpg":["fotos_web/PXL_20260403_125209419.jpg","03.04.2026","12:52 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_130629825.MP.jpg":["fotos_web/PXL_20260403_130629825.MP.jpg","03.04.2026","13:06 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_131637630.MP.jpg":["fotos_web/PXL_20260403_131637630.MP.jpg","03.04.2026","13:16 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch","Schneebedeckte Gipfel des Hohen Atlas am Tizi n'Tichka Pass"],
+      "PXL_20260403_153741114.jpg":["fotos_web/PXL_20260403_153741114.jpg","03.04.2026","15:37 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_153744214.jpg":["fotos_web/PXL_20260403_153744214.jpg","03.04.2026","15:37 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_164640006.MP.jpg":["fotos_web/PXL_20260403_164640006.MP.jpg","03.04.2026","16:46 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_164643384.jpg":["fotos_web/PXL_20260403_164643384.jpg","03.04.2026","16:46 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_164655070.jpg":["fotos_web/PXL_20260403_164655070.jpg","03.04.2026","16:46 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_164721704.MP.jpg":["fotos_web/PXL_20260403_164721704.MP.jpg","03.04.2026","16:47 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_164728809.MP.jpg":["fotos_web/PXL_20260403_164728809.MP.jpg","03.04.2026","16:47 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch","Karlo & Piet im Dachpool des Riad de Vincent, Marrakesch"],
+      "PXL_20260403_164733507.MP.jpg":["fotos_web/PXL_20260403_164733507.MP.jpg","03.04.2026","16:47 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_164734147.jpg":["fotos_web/PXL_20260403_164734147.jpg","03.04.2026","16:47 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_165239460.jpg":["fotos_web/PXL_20260403_165239460.jpg","03.04.2026","16:52 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_165402104.jpg":["fotos_web/PXL_20260403_165402104.jpg","03.04.2026","16:54 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_165407715.MP.jpg":["fotos_web/PXL_20260403_165407715.MP.jpg","03.04.2026","16:54 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch",""],
+      "PXL_20260403_165417292.jpg":["fotos_web/PXL_20260403_165417292.jpg","03.04.2026","16:54 Uhr","Ouarzazate · Aït Benhaddou · Fahrt nach Marrakesch","Marlene Selfie im Riad-Korridor, Familie auf dem Weg zum Pool"],
+      "PXL_20260404_092042916.jpg":["fotos_web/PXL_20260404_092042916.jpg","04.04.2026","09:20 Uhr","Marrakesch · Medina · Djemaa el-Fna","Marrakesch Souk – alter Baum inmitten von Händerständen"],
+      "PXL_20260404_092048021.MP.jpg":["fotos_web/PXL_20260404_092048021.MP.jpg","04.04.2026","09:20 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_095919305.MP.jpg":["fotos_web/PXL_20260404_095919305.MP.jpg","04.04.2026","09:59 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_095931308.MP.jpg":["fotos_web/PXL_20260404_095931308.MP.jpg","04.04.2026","09:59 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_100318760.jpg":["fotos_web/PXL_20260404_100318760.jpg","04.04.2026","10:03 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_100320897.jpg":["fotos_web/PXL_20260404_100320897.jpg","04.04.2026","10:03 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_100816214.MP.jpg":["fotos_web/PXL_20260404_100816214.MP.jpg","04.04.2026","10:08 Uhr","Marrakesch · Medina · Djemaa el-Fna","Bahia-Palast Marrakesch – prachtvoll bemalte Holzdecke, voller Besucher"],
+      "PXL_20260404_102615145.PORTRAIT.jpg":["fotos_web/PXL_20260404_102615145.PORTRAIT.jpg","04.04.2026","10:26 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_102619248.PORTRAIT.jpg":["fotos_web/PXL_20260404_102619248.PORTRAIT.jpg","04.04.2026","10:26 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_102835962.PORTRAIT.jpg":["fotos_web/PXL_20260404_102835962.PORTRAIT.jpg","04.04.2026","10:28 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_102840844.PORTRAIT.jpg":["fotos_web/PXL_20260404_102840844.PORTRAIT.jpg","04.04.2026","10:28 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_114656587.MP.jpg":["fotos_web/PXL_20260404_114656587.MP.jpg","04.04.2026","11:46 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_114658408.jpg":["fotos_web/PXL_20260404_114658408.jpg","04.04.2026","11:46 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_145319663.MP.jpg":["fotos_web/PXL_20260404_145319663.MP.jpg","04.04.2026","14:53 Uhr","Marrakesch · Medina · Djemaa el-Fna","Marrakesch Souk – überdachte Markthalle mit Holzlamellen-Dach"],
+      "PXL_20260404_180649359.jpg":["fotos_web/PXL_20260404_180649359.jpg","04.04.2026","18:06 Uhr","Marrakesch · Medina · Djemaa el-Fna","Karlo mit Burger im Restaurant Le Slimana, Marrakesch"],
+      "PXL_20260404_180652668.jpg":["fotos_web/PXL_20260404_180652668.jpg","04.04.2026","18:06 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_180655587.jpg":["fotos_web/PXL_20260404_180655587.jpg","04.04.2026","18:06 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_180830609.jpg":["fotos_web/PXL_20260404_180830609.jpg","04.04.2026","18:08 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_180837722.MP.jpg":["fotos_web/PXL_20260404_180837722.MP.jpg","04.04.2026","18:08 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_180904644.MP.jpg":["fotos_web/PXL_20260404_180904644.MP.jpg","04.04.2026","18:09 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_180909237.jpg":["fotos_web/PXL_20260404_180909237.jpg","04.04.2026","18:09 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_180913387.jpg":["fotos_web/PXL_20260404_180913387.jpg","04.04.2026","18:09 Uhr","Marrakesch · Medina · Djemaa el-Fna","Familien-Abendessen im Restaurant Le Slimana, Marrakesch"],
+      "PXL_20260404_180919919.MP.jpg":["fotos_web/PXL_20260404_180919919.MP.jpg","04.04.2026","18:09 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_180920734.jpg":["fotos_web/PXL_20260404_180920734.jpg","04.04.2026","18:09 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_180921664.jpg":["fotos_web/PXL_20260404_180921664.jpg","04.04.2026","18:09 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_183822696.jpg":["fotos_web/PXL_20260404_183822696.jpg","04.04.2026","18:38 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_183825062.jpg":["fotos_web/PXL_20260404_183825062.jpg","04.04.2026","18:38 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260404_190703241.MP.jpg":["fotos_web/PXL_20260404_190703241.MP.jpg","04.04.2026","19:07 Uhr","Marrakesch · Medina · Djemaa el-Fna",""],
+      "PXL_20260405_085317368.MP.jpg":["fotos_web/PXL_20260405_085317368.MP.jpg","05.04.2026","08:53 Uhr","Marrakesch · Essaouira · Sidi Kaouki","Frühstück im Innenhof des Riad de Vincent, Björn & Marlene"],
+      "PXL_20260405_085336245.jpg":["fotos_web/PXL_20260405_085336245.jpg","05.04.2026","08:53 Uhr","Marrakesch · Essaouira · Sidi Kaouki",""],
+      "PXL_20260405_085345738.jpg":["fotos_web/PXL_20260405_085345738.jpg","05.04.2026","08:53 Uhr","Marrakesch · Essaouira · Sidi Kaouki",""],
+      "PXL_20260405_085401349.jpg":["fotos_web/PXL_20260405_085401349.jpg","05.04.2026","08:54 Uhr","Marrakesch · Essaouira · Sidi Kaouki",""],
+      "PXL_20260405_085415312.jpg":["fotos_web/PXL_20260405_085415312.jpg","05.04.2026","08:54 Uhr","Marrakesch · Essaouira · Sidi Kaouki",""],
+      "PXL_20260405_094934379.PORTRAIT.jpg":["fotos_web/PXL_20260405_094934379.PORTRAIT.jpg","05.04.2026","09:49 Uhr","Marrakesch · Essaouira · Sidi Kaouki","Katzenmutter säugt Kätzchen in einer Gasse in Marrakesch"],
+      "PXL_20260405_115815192.MP.jpg":["fotos_web/PXL_20260405_115815192.MP.jpg","05.04.2026","11:58 Uhr","Marrakesch · Essaouira · Sidi Kaouki",""],
+      "PXL_20260405_120015033.MP.jpg":["fotos_web/PXL_20260405_120015033.MP.jpg","05.04.2026","12:00 Uhr","Marrakesch · Essaouira · Sidi Kaouki",""],
+      "PXL_20260405_123112026.MP.jpg":["fotos_web/PXL_20260405_123112026.MP.jpg","05.04.2026","12:31 Uhr","Marrakesch · Essaouira · Sidi Kaouki",""],
+      "PXL_20260405_123125528.MP.jpg":["fotos_web/PXL_20260405_123125528.MP.jpg","05.04.2026","12:31 Uhr","Marrakesch · Essaouira · Sidi Kaouki",""],
+      "PXL_20260405_123154034.MP.jpg":["fotos_web/PXL_20260405_123154034.MP.jpg","05.04.2026","12:31 Uhr","Marrakesch · Essaouira · Sidi Kaouki","Kunstwerk in einer Galerie in Marrakesch"],
+      "PXL_20260405_123301827.MP.jpg":["fotos_web/PXL_20260405_123301827.MP.jpg","05.04.2026","12:33 Uhr","Marrakesch · Essaouira · Sidi Kaouki",""],
+      "PXL_20260405_123322541.MP.jpg":["fotos_web/PXL_20260405_123322541.MP.jpg","05.04.2026","12:33 Uhr","Marrakesch · Essaouira · Sidi Kaouki",""],
+      "PXL_20260405_124158283.jpg":["fotos_web/PXL_20260405_124158283.jpg","05.04.2026","12:41 Uhr","Marrakesch · Essaouira · Sidi Kaouki",""],
+      "PXL_20260405_184402323.MP.jpg":["fotos_web/PXL_20260405_184402323.MP.jpg","05.04.2026","18:44 Uhr","Marrakesch · Essaouira · Sidi Kaouki","Erster Abend in La Maison des Vagues – Blick aus dem Zimmer"],
+      "PXL_20260405_190608786.jpg":["fotos_web/PXL_20260405_190608786.jpg","05.04.2026","19:06 Uhr","Marrakesch · Essaouira · Sidi Kaouki",""],
+      "PXL_20260405_190732953.jpg":["fotos_web/PXL_20260405_190732953.jpg","05.04.2026","19:07 Uhr","Marrakesch · Essaouira · Sidi Kaouki",""],
+      "PXL_20260405_202153555.MP.jpg":["fotos_web/PXL_20260405_202153555.MP.jpg","05.04.2026","20:21 Uhr","Marrakesch · Essaouira · Sidi Kaouki",""],
+      "PXL_20260406_104118742.jpg":["fotos_web/PXL_20260406_104118742.jpg","06.04.2026","10:41 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik","Karlo mit bunten Plastikloeffeln im Gesicht im Cafe Sidi Kaouki"],
+      "PXL_20260406_104131397.PORTRAIT.jpg":["fotos_web/PXL_20260406_104131397.PORTRAIT.jpg","06.04.2026","10:41 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik",""],
+      "PXL_20260406_115515278.jpg":["fotos_web/PXL_20260406_115515278.jpg","06.04.2026","11:55 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik",""],
+      "PXL_20260406_131623459.MP.jpg":["fotos_web/PXL_20260406_131623459.MP.jpg","06.04.2026","13:16 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik",""],
+      "PXL_20260406_135200744.MP.jpg":["fotos_web/PXL_20260406_135200744.MP.jpg","06.04.2026","13:52 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik",""],
+      "PXL_20260406_140431522.MP.jpg":["fotos_web/PXL_20260406_140431522.MP.jpg","06.04.2026","14:04 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik",""],
+      "PXL_20260406_140436553.jpg":["fotos_web/PXL_20260406_140436553.jpg","06.04.2026","14:04 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik",""],
+      "PXL_20260406_140437355.jpg":["fotos_web/PXL_20260406_140437355.jpg","06.04.2026","14:04 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik","Marlene & Pepe im Pool von La Maison des Vagues"],
+      "PXL_20260406_140501860.jpg":["fotos_web/PXL_20260406_140501860.jpg","06.04.2026","14:05 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik",""],
+      "PXL_20260406_140511490.jpg":["fotos_web/PXL_20260406_140511490.jpg","06.04.2026","14:05 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik",""],
+      "PXL_20260406_140650487.MP.jpg":["fotos_web/PXL_20260406_140650487.MP.jpg","06.04.2026","14:06 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik",""],
+      "PXL_20260406_140652869.MP.jpg":["fotos_web/PXL_20260406_140652869.MP.jpg","06.04.2026","14:06 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik",""],
+      "PXL_20260406_154655257.MP.jpg":["fotos_web/PXL_20260406_154655257.MP.jpg","06.04.2026","15:46 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik",""],
+      "PXL_20260406_171451436.MP.jpg":["fotos_web/PXL_20260406_171451436.MP.jpg","06.04.2026","17:14 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik","Esel grast auf einem Feld bei Sidi Kaouki"],
+      "PXL_20260406_175125863.jpg":["fotos_web/PXL_20260406_175125863.jpg","06.04.2026","17:51 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik",""],
+      "PXL_20260406_175129615.jpg":["fotos_web/PXL_20260406_175129615.jpg","06.04.2026","17:51 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik",""],
+      "PXL_20260406_183035728.jpg":["fotos_web/PXL_20260406_183035728.jpg","06.04.2026","18:30 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik",""],
+      "PXL_20260406_183047787.PORTRAIT.jpg":["fotos_web/PXL_20260406_183047787.PORTRAIT.jpg","06.04.2026","18:30 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik",""],
+      "PXL_20260406_222844363.NIGHT.jpg":["fotos_web/PXL_20260406_222844363.NIGHT.jpg","06.04.2026","22:28 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik","Nächtlicher Innenhof von La Maison des Vagues – marokk. Fliesen"],
+      "PXL_20260406_224721751.MP.jpg":["fotos_web/PXL_20260406_224721751.MP.jpg","06.04.2026","22:47 Uhr","Sidi Kaouki · La Maison des Vagues · Atlantik",""],
+      "PXL_20260407_093345058.MP.jpg":["fotos_web/PXL_20260407_093345058.MP.jpg","07.04.2026","09:33 Uhr","Sidi Kaouki · Essaouira · Strand","Dorfstraße Sidi Kaouki – Kinder führen Ziegenherde vorbei"],
+      "PXL_20260407_093347747.MP.jpg":["fotos_web/PXL_20260407_093347747.MP.jpg","07.04.2026","09:33 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_100912427.jpg":["fotos_web/PXL_20260407_100912427.jpg","07.04.2026","10:09 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_102113228.jpg":["fotos_web/PXL_20260407_102113228.jpg","07.04.2026","10:21 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_102534107.jpg":["fotos_web/PXL_20260407_102534107.jpg","07.04.2026","10:25 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_102924066.PORTRAIT.jpg":["fotos_web/PXL_20260407_102924066.PORTRAIT.jpg","07.04.2026","10:29 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_104044320.jpg":["fotos_web/PXL_20260407_104044320.jpg","07.04.2026","10:40 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_104124774.jpg":["fotos_web/PXL_20260407_104124774.jpg","07.04.2026","10:41 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_104151338.MP.jpg":["fotos_web/PXL_20260407_104151338.MP.jpg","07.04.2026","10:41 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_104333498.MP.jpg":["fotos_web/PXL_20260407_104333498.MP.jpg","07.04.2026","10:43 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_104404768.jpg":["fotos_web/PXL_20260407_104404768.jpg","07.04.2026","10:44 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_104508077.MP.jpg":["fotos_web/PXL_20260407_104508077.MP.jpg","07.04.2026","10:45 Uhr","Sidi Kaouki · Essaouira · Strand","Eingangstor zur portugiesischen Festung Essaouira mit Kanonen"],
+      "PXL_20260407_104733649.MP.jpg":["fotos_web/PXL_20260407_104733649.MP.jpg","07.04.2026","10:47 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_104741706.MP.jpg":["fotos_web/PXL_20260407_104741706.MP.jpg","07.04.2026","10:47 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_104748591.MP.jpg":["fotos_web/PXL_20260407_104748591.MP.jpg","07.04.2026","10:47 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_105443060.jpg":["fotos_web/PXL_20260407_105443060.jpg","07.04.2026","10:54 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_105445631.jpg":["fotos_web/PXL_20260407_105445631.jpg","07.04.2026","10:54 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_110510708.jpg":["fotos_web/PXL_20260407_110510708.jpg","07.04.2026","11:05 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_110708628.jpg":["fotos_web/PXL_20260407_110708628.jpg","07.04.2026","11:07 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_111404806.jpg":["fotos_web/PXL_20260407_111404806.jpg","07.04.2026","11:14 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_112309903.jpg":["fotos_web/PXL_20260407_112309903.jpg","07.04.2026","11:23 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_112327864.jpg":["fotos_web/PXL_20260407_112327864.jpg","07.04.2026","11:23 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_112934414.MP.jpg":["fotos_web/PXL_20260407_112934414.MP.jpg","07.04.2026","11:29 Uhr","Sidi Kaouki · Essaouira · Strand","Essaouira Hafen/Markt – Festungsturm im Hintergrund"],
+      "PXL_20260407_112936692.jpg":["fotos_web/PXL_20260407_112936692.jpg","07.04.2026","11:29 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_112947474.MP.jpg":["fotos_web/PXL_20260407_112947474.MP.jpg","07.04.2026","11:29 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_113242280.jpg":["fotos_web/PXL_20260407_113242280.jpg","07.04.2026","11:32 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_114654831.jpg":["fotos_web/PXL_20260407_114654831.jpg","07.04.2026","11:46 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_114655413.jpg":["fotos_web/PXL_20260407_114655413.jpg","07.04.2026","11:46 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_114656064.jpg":["fotos_web/PXL_20260407_114656064.jpg","07.04.2026","11:46 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_122453285.jpg":["fotos_web/PXL_20260407_122453285.jpg","07.04.2026","12:24 Uhr","Sidi Kaouki · Essaouira · Strand","Stimmungsvolles Restaurant in Essaouira – violette Wände, Lampenkugeln"],
+      "PXL_20260407_122518446.jpg":["fotos_web/PXL_20260407_122518446.jpg","07.04.2026","12:25 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_133643253.MP.jpg":["fotos_web/PXL_20260407_133643253.MP.jpg","07.04.2026","13:36 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_133646617.jpg":["fotos_web/PXL_20260407_133646617.jpg","07.04.2026","13:36 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_142228472.jpg":["fotos_web/PXL_20260407_142228472.jpg","07.04.2026","14:22 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_142819195.jpg":["fotos_web/PXL_20260407_142819195.jpg","07.04.2026","14:28 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_145741284.jpg":["fotos_web/PXL_20260407_145741284.jpg","07.04.2026","14:57 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260407_222555548.NIGHT.jpg":["fotos_web/PXL_20260407_222555548.NIGHT.jpg","07.04.2026","22:25 Uhr","Sidi Kaouki · Essaouira · Strand","Dunkle Nachtaufnahme (Wanddetail bei La Maison des Vagues)"],
+      "PXL_20260407_223013396.MP.jpg":["fotos_web/PXL_20260407_223013396.MP.jpg","07.04.2026","22:30 Uhr","Sidi Kaouki · Essaouira · Strand",""],
+      "PXL_20260408_104105181.jpg":["fotos_web/PXL_20260408_104105181.jpg","08.04.2026","10:41 Uhr","Sidi Kaouki · La Maison des Vagues",""],
+      "PXL_20260408_104137891.jpg":["fotos_web/PXL_20260408_104137891.jpg","08.04.2026","10:41 Uhr","Sidi Kaouki · La Maison des Vagues",""],
+      "PXL_20260408_124642936.MP.jpg":["fotos_web/PXL_20260408_124642936.MP.jpg","08.04.2026","12:46 Uhr","Sidi Kaouki · La Maison des Vagues",""],
+      "PXL_20260408_124645313.jpg":["fotos_web/PXL_20260408_124645313.jpg","08.04.2026","12:46 Uhr","Sidi Kaouki · La Maison des Vagues","Strandliegen La Maison des Vagues, Atlantikküste, bewölkter Tag"],
+      "PXL_20260408_134058225.MP.jpg":["fotos_web/PXL_20260408_134058225.MP.jpg","08.04.2026","13:40 Uhr","Sidi Kaouki · La Maison des Vagues",""],
+      "PXL_20260408_145650230.MP.jpg":["fotos_web/PXL_20260408_145650230.MP.jpg","08.04.2026","14:56 Uhr","Sidi Kaouki · La Maison des Vagues",""],
+      "PXL_20260408_145651407.jpg":["fotos_web/PXL_20260408_145651407.jpg","08.04.2026","14:56 Uhr","Sidi Kaouki · La Maison des Vagues",""],
+      "PXL_20260408_145657005.MP.jpg":["fotos_web/PXL_20260408_145657005.MP.jpg","08.04.2026","14:56 Uhr","Sidi Kaouki · La Maison des Vagues",""],
+      "PXL_20260408_154048103.MP.jpg":["fotos_web/PXL_20260408_154048103.MP.jpg","08.04.2026","15:40 Uhr","Sidi Kaouki · La Maison des Vagues",""],
+      "PXL_20260408_154826120.jpg":["fotos_web/PXL_20260408_154826120.jpg","08.04.2026","15:48 Uhr","Sidi Kaouki · La Maison des Vagues","Marlene & Kinder sitzen im Sand am Atlantikstrand Sidi Kaouki"],
+      "PXL_20260408_161633962.MP.jpg":["fotos_web/PXL_20260408_161633962.MP.jpg","08.04.2026","16:16 Uhr","Sidi Kaouki · La Maison des Vagues",""],
+      "PXL_20260408_161636718.MP.jpg":["fotos_web/PXL_20260408_161636718.MP.jpg","08.04.2026","16:16 Uhr","Sidi Kaouki · La Maison des Vagues",""],
+      "PXL_20260408_161637494.jpg":["fotos_web/PXL_20260408_161637494.jpg","08.04.2026","16:16 Uhr","Sidi Kaouki · La Maison des Vagues",""],
+      "PXL_20260409_101538771.MP.jpg":["fotos_web/PXL_20260409_101538771.MP.jpg","09.04.2026","10:15 Uhr","Sidi Kaouki · Atlantikküste","Nahaufnahme Felsen an der Atlantikküste"],
+      "PXL_20260409_103746666.jpg":["fotos_web/PXL_20260409_103746666.jpg","09.04.2026","10:37 Uhr","Sidi Kaouki · Atlantikküste",""],
+      "PXL_20260409_143334749.MP.jpg":["fotos_web/PXL_20260409_143334749.MP.jpg","09.04.2026","14:33 Uhr","Sidi Kaouki · Atlantikküste",""],
+      "PXL_20260409_143750092.MP.jpg":["fotos_web/PXL_20260409_143750092.MP.jpg","09.04.2026","14:37 Uhr","Sidi Kaouki · Atlantikküste",""],
+      "PXL_20260409_143952204.MP.jpg":["fotos_web/PXL_20260409_143952204.MP.jpg","09.04.2026","14:39 Uhr","Sidi Kaouki · Atlantikküste","Orangen-Straßenverkaeufer – riesiger Berg frischer Orangen auf LKW"],
+      "PXL_20260409_145111696.MP.jpg":["fotos_web/PXL_20260409_145111696.MP.jpg","09.04.2026","14:51 Uhr","Sidi Kaouki · Atlantikküste",""],
+      "PXL_20260409_164428730.MP.jpg":["fotos_web/PXL_20260409_164428730.MP.jpg","09.04.2026","16:44 Uhr","Sidi Kaouki · Atlantikküste",""],
+      "PXL_20260409_164432991.jpg":["fotos_web/PXL_20260409_164432991.jpg","09.04.2026","16:44 Uhr","Sidi Kaouki · Atlantikküste",""],
+      "PXL_20260409_185447705.MP.jpg":["fotos_web/PXL_20260409_185447705.MP.jpg","09.04.2026","18:54 Uhr","Sidi Kaouki · Atlantikküste","Piet zwischen zwei Tajines vor gemusterten Kacheln im Restaurant"],
+      "PXL_20260409_185645297.jpg":["fotos_web/PXL_20260409_185645297.jpg","09.04.2026","18:56 Uhr","Sidi Kaouki · Atlantikküste",""],
+      "PXL_20260409_185647457.jpg":["fotos_web/PXL_20260409_185647457.jpg","09.04.2026","18:56 Uhr","Sidi Kaouki · Atlantikküste",""],
+      "PXL_20260409_185652884.jpg":["fotos_web/PXL_20260409_185652884.jpg","09.04.2026","18:56 Uhr","Sidi Kaouki · Atlantikküste",""],
+      "PXL_20260410_084638453.MP.jpg":["fotos_web/PXL_20260410_084638453.MP.jpg","10.04.2026","08:46 Uhr","Fahrt Sidi Kaouki → Casablanca · Safi · El Jadida","Überschwemmte Tankstelle auf der Fahrt nach Casablanca – starker Regen"],
+      "PXL_20260410_115649905.MP.jpg":["fotos_web/PXL_20260410_115649905.MP.jpg","10.04.2026","11:56 Uhr","Fahrt Sidi Kaouki → Casablanca · Safi · El Jadida","Traditioneller Couscous mit Gemüse auf dekoriertem marokkanischem Teller"],
+      "PXL_20260410_115655306.jpg":["fotos_web/PXL_20260410_115655306.jpg","10.04.2026","11:56 Uhr","Fahrt Sidi Kaouki → Casablanca · Safi · El Jadida",""],
+      "PXL_20260410_172336825.jpg":["fotos_web/PXL_20260410_172336825.jpg","10.04.2026","17:23 Uhr","Fahrt Sidi Kaouki → Casablanca · Safi · El Jadida","Casablanca Stadtbild – Palmenstraße, moderne Gebaeude"],
+      "PXL_20260412_152031486.MP.jpg":["fotos_web/PXL_20260412_152031486.MP.jpg","12.04.2026","15:20 Uhr","Zuhause · Tangstedt","Pepe, Piet & Karlo in der Badewanne zuhause – erster Badeabend nach der Reise"],
+      "PXL_20260412_152040319.MP.jpg":["fotos_web/PXL_20260412_152040319.MP.jpg","12.04.2026","15:20 Uhr","Zuhause · Tangstedt",""],
+      "PXL_20260412_152041288.jpg":["fotos_web/PXL_20260412_152041288.jpg","12.04.2026","15:20 Uhr","Zuhause · Tangstedt","Trio in der Badewanne – alle drei lächeln in die Kamera"],
+      "PXL_20260412_152042390.jpg":["fotos_web/PXL_20260412_152042390.jpg","12.04.2026","15:20 Uhr","Zuhause · Tangstedt","Alle drei lachen in der Wanne – Pepe, Piet & Karlo"],
+    };
+
+    function renderGallery() {
+      const container = document.getElementById('foto-container');
+      let idx = 0;
+      let allPhotos = [];
+      FOTO_GROUPS.forEach(g => allPhotos = allPhotos.concat(g.photos));
+    
+      container.innerHTML = FOTO_GROUPS.map(group => {
+        const startIdx = allPhotos.indexOf(group.photos[0]);
+        const imgs = group.photos.map((src, i) => {
+          const gi = startIdx + i;
+          return `<div class="foto-thumb" onclick="openLightbox(${gi})" style="background-image:url('${src}')">
+            <div class="foto-overlay"></div>
+          </div>`;
+        }).join('');
+        return `<div class="foto-group">
+          <div class="foto-group-header">
+            <span class="foto-group-label">${group.label}</span>
+            <span class="foto-group-sub">${group.sub}</span>
+            <span class="foto-group-count">${group.photos.length} Fotos</span>
+          </div>
+          <div class="foto-grid-inner">${imgs}</div>
+        </div>`;
+      }).join('');
+    
+      // Setup lightbox data
+      window._allPhotos = allPhotos;
+      window._lightboxIdx = 0;
+    }
+    
+    function openLightbox(idx) {
+      window._lightboxIdx = idx;
+      const lb = document.getElementById('lightbox');
+      lb.style.display = 'flex';
+      updateLightbox();
+    }
+    
+    function updateLightbox() {
+      const photos = window._allPhotos;
+      const idx = window._lightboxIdx;
+      const src = photos[idx];
+      document.getElementById('lb-img').src = src;
+      document.getElementById('lb-counter').textContent = (idx+1) + ' / ' + photos.length;
+      // Show metadata
+      const filename = src.replace('fotos_web/', '');
+      const meta = FOTO_METADATA[filename] || null;
+      const titelEl = document.getElementById('lb-titel');
+      const metaEl = document.getElementById('lb-meta');
+      if (meta && (meta[4] || meta[1])) {
+        titelEl.textContent = meta[4] || '';
+        const parts = [];
+        if (meta[1]) parts.push(meta[1]);
+        if (meta[2]) parts.push(meta[2]);
+        if (meta[3]) parts.push('📍 ' + meta[3]);
+        metaEl.textContent = parts.join('  ·  ');
+        titelEl.style.display = meta[4] ? '' : 'none';
+        metaEl.style.display = parts.length ? '' : 'none';
+      } else {
+        titelEl.textContent = '';
+        metaEl.textContent = '';
+        titelEl.style.display = 'none';
+        metaEl.style.display = 'none';
+      }
+    }
+    
+    function lbNext() {
+      const photos = window._allPhotos;
+      window._lightboxIdx = (window._lightboxIdx + 1) % photos.length;
+      updateLightbox();
+    }
+    
+    function lbPrev() {
+      const photos = window._allPhotos;
+      window._lightboxIdx = (window._lightboxIdx - 1 + photos.length) % photos.length;
+      updateLightbox();
+    }
+    
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+    
+    document.addEventListener('keydown', e => {
+      const lb = document.getElementById('lightbox');
+      if (lb && lb.style.display === 'flex') {
+        if (e.key === 'ArrowRight') lbNext();
+        if (e.key === 'ArrowLeft') lbPrev();
+        if (e.key === 'Escape') closeLightbox();
+      }
+    });
+    
+    renderGallery();
+  </script>
+
+  <!-- ── REISEVERLAUF / TIMELINE ──────────────── -->
+  <div class="section-title">🗺️ Reiseverlauf Tag für Tag</div>
+
+  <div class="timeline">
+
+    <!-- ABFAHRT ZUHAUSE -->
+    <div class="day-block">
+      <div class="day-dot" style="background:#555;box-shadow:0 0 0 2px #555">🏠</div>
+      <div class="card" style="border-left:4px solid #888">
+        <div class="card-header">
+          <div>
+            <span class="date-badge" style="background:#555">Sa. 28. März · ca. 07:00 Uhr</span>
+            <div class="location">📍 Große Twiete 38, 25499 Tangstedt → Aalsmeer (Schiphol)</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>🚗 Abfahrt von Zuhause</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Abfahrt:</span><span class="value">ca. 07:00 Uhr (Tangstedt)</span></div>
+            <div class="info-item"><span class="label">Ankunft Parkplatz:</span><span class="value">ca. 12:30–13:00 Uhr</span></div>
+            <div class="info-item"><span class="label">Strecke:</span><span class="value">ca. 490 km · A1/A23 → Niederlande</span></div>
+            <div class="info-item"><span class="label">Fahrtdauer:</span><span class="value">ca. 4h 45min + Pause</span></div>
+            <div class="info-item"><span class="label">Fahrzeug:</span><span class="value">HH-LN-211E</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-orange">⏱️ Frühzeitig starten – Staugefahr A1 Hamburg</span>
+            <span class="tag tag-blue">🛣️ Route: A1 → A23 → Niederlande → Aalsmeer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARK & FLY -->
+    <div class="day-block">
+      <div class="day-dot" style="background:#5b6e2e;box-shadow:0 0 0 2px #5b6e2e">🅿️</div>
+      <div class="card" style="border-left:4px solid #5b6e2e">
+        <div class="card-header">
+          <div>
+            <span class="date-badge" style="background:#5b6e2e">Sa. 28. März · ab 13:00 Uhr</span>
+            <div class="location">📍 Locatie Z, Middenweg 7, Aalsmeer – Amsterdam Schiphol</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>🅿️ Park & Fly – Quick Parking Z</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Einfahrt:</span><span class="value">Sa. 28. März 2026, 13:00 Uhr</span></div>
+            <div class="info-item"><span class="label">Ausfahrt:</span><span class="value">Sa. 11. April 2026, 19:00 Uhr</span></div>
+            <div class="info-item"><span class="label">Fahrzeug:</span><span class="value">HH-LN-211E</span></div>
+            <div class="info-item"><span class="label">Preis:</span><span class="value">75,99 € (bereits bezahlt)</span></div>
+            <div class="info-item"><span class="label">Tel.:</span><span class="value">+31 20 333 1530</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-green">✅ Bereits bezahlt</span>
+            <span class="tag tag-red">🔒 Nicht stornierbar oder umbuchbar!</span>
+            <span class="tag tag-orange">📱 Barcode dieser Bestätigung zum Einfahren scannen</span>
+            <span class="tag tag-blue">🚌 Rückweg: Schilder „App pick-up point" F-Spur → Busse F7/F8/F9</span>
+          </div>
+          <div class="confirmation-line">
+            <span>Buchungscode: <span class="code">KNSDDT</span></span>
+            <span>Ext. Ref.: <span class="code">26012022667</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HINFLUG -->
+    <div class="day-block">
+      <div class="day-dot" style="background:#1565c0;box-shadow:0 0 0 2px #1565c0">✈️</div>
+      <div class="card" style="border-left:4px solid #1565c0">
+        <div class="card-header">
+          <div>
+            <span class="date-badge" style="background:#1565c0">Sa. 28. März · 17:15 → 20:45</span>
+            <div class="location">Amsterdam (AMS) → Casablanca (CMN)</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>✈️ Hinflug – Royal Air Maroc AT851</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Abflug:</span><span class="value">Amsterdam AMS · 17:15 Uhr</span></div>
+            <div class="info-item"><span class="label">Ankunft:</span><span class="value">Casablanca CMN · 20:45 Uhr</span></div>
+            <div class="info-item"><span class="label">Flugdauer:</span><span class="value">3h 30min · Direktflug · Economy</span></div>
+            <div class="info-item"><span class="label">Reisende:</span><span class="value">Björn, Marlene, Piet, Karlo, Pepe Bäurle</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-orange">🧳 Nur Handgepäck! (4 × Kabine 10 kg, kein Aufgabegepäck)</span>
+            <span class="tag tag-blue">Direktflug · Economy</span>
+          </div>
+          <div class="confirmation-line">
+            <span>Buchungsref.: <span class="code">ZSVPKT</span></span>
+            <span>Kunden-Ref.: <span class="code">40-861930342</span></span>
+            <span>PIN: <span class="code">5201</span></span>
+            <span>Preis: <span class="code">1.196,00 € (5 Personen)</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAR RENTAL -->
+    <div class="day-block">
+      <div class="day-dot car">🚗</div>
+      <div class="card car-card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge">28. Mär – 11. Apr</span>
+            <div class="location">Mohammed V International Airport · Casablanca</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>🚗 Mietwagen – AirCar</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Fahrzeug:</span><span class="value">MG 5 (oder ähnlich) · Automatik · Klimaanlage</span></div>
+            <div class="info-item"><span class="label">Abholung:</span><span class="value">Sa. 28. März 2026, 22:00 – Terminal 2</span></div>
+            <div class="info-item"><span class="label">Rückgabe:</span><span class="value">Sa. 11. April 2026, 10:00 – Terminal 2</span></div>
+            <div class="info-item"><span class="label">Fahrer:</span><span class="value">Björn Bäurle · Flug AT851</span></div>
+            <div class="info-item"><span class="label">Kontakt AirCar:</span><span class="value">+212 522 049304 · WhatsApp: +212 660 690058</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-gold">💰 757,21 € gesamt (inkl. Vollkasko)</span>
+            <span class="tag tag-blue">5 Sitze · 2 große + 1 kleiner Koffer</span>
+          </div>
+          <div class="confirmation-line">
+            <span>Bestätigung: <span class="code">712874681</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-dot drive">🚗</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge" style="background:var(--terracotta)">Sa. 28. März · ca. 21:00</span>
+            <div class="location">📍 CMN Airport → Nouaseur</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>🚗 Fahrt zum Hotel</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Strecke:</span><span class="value">~5 km</span></div>
+            <div class="info-item"><span class="label">Fahrzeit:</span><span class="value">ca. 10 min</span></div>
+            <div class="info-item"><span class="label">Route:</span><span class="value">Direkt ab Terminal, N4</span></div>
+            <div class="info-item"><span class="label">Hinweis:</span><span class="value">Mietwagen-Abholung AirCar (Terminal Mohammed V)</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag tag-blue">🚗 AirCar – Mietwagen-Übergabe am Flughafen</span>
+          </div>
+          <div class="confirmation-line">
+            <a style="color:#4285f4;font-weight:600;text-decoration:none;font-size:0.82rem" href="https://maps.google.com/maps/dir/Mohammed+V+International+Airport/Nouaseur,+Morocco" target="_blank">🗺️ In Google Maps öffnen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NACHT 1: Next Home Airport -->
+    <div class="day-block">
+      <div class="day-dot">🏠</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge">Sa. 28. – So. 29. März</span>
+            <div class="location">📍 Nouaseur (bei Casablanca Flughafen)</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>Next Home – Airport</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Check-in:</span><span class="value">14:00–00:00</span></div>
+            <div class="info-item"><span class="label">Check-out:</span><span class="value">00:00</span></div>
+            <div class="info-item"><span class="label">Zimmer:</span><span class="value">Apartment mit Gartenblick</span></div>
+            <div class="info-item"><span class="label">Gäste:</span><span class="value">2 Erw. + 2 Kinder (4 &amp; 8 J.)</span></div>
+            <div class="info-item"><span class="label">Preis:</span><span class="value">147,76 € (MAD 1.609 · Kurs 10,89)</span></div>
+            <div class="info-item"><span class="label">Tel.:</span><span class="value">+212 614-939874</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-green">🍳 Frühstück inklusive</span>
+            <span class="tag tag-orange">💵 Barkaution: MAD 1.000 bei Anreise</span>
+            <span class="tag tag-blue">👤 Empfang vor Ort</span>
+          </div>
+          <div class="confirmation-line">
+            <span>Bestätigung: <span class="code">6343493582</span></span>
+            <span>PIN: <span class="code">9717</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-dot drive">🚗</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge" style="background:var(--terracotta)">So. 29. März · morgens</span>
+            <div class="location">📍 Nouaseur → Midelt</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>🚗 Fahrt in den Atlas</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Strecke:</span><span class="value">~280 km</span></div>
+            <div class="info-item"><span class="label">Fahrzeit:</span><span class="value">ca. 3,5 Std.</span></div>
+            <div class="info-item"><span class="label">Route:</span><span class="value">A2 / N8 Richtung Fès, dann N13 Richtung Midelt</span></div>
+            <div class="info-item"><span class="label">Straße:</span><span class="value">Autobahn bis Casablanca, dann Atlasgebirge</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag tag-green">🌲 Azrou – Zederwald &amp; Berberaffen</span>
+            <span class="tag tag tag-green">🏔️ Ifrane – „Schweiz Marokkos" (1665 m)</span>
+            <span class="tag tag tag-gold">⛰️ Col du Zad – Gebirgspass 2178 m</span>
+          </div>
+          <div class="confirmation-line">
+            <a style="color:#4285f4;font-weight:600;text-decoration:none;font-size:0.82rem" href="https://maps.google.com/maps/dir/Nouaseur,+Morocco/Midelt,+Morocco" target="_blank">🗺️ In Google Maps öffnen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NACHT 2: Midelt -->
+    <div class="day-block">
+      <div class="day-dot">🏔️</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge">So. 29. – Mo. 30. März</span>
+            <div class="location">📍 Midelt (Mittlerer Atlas)</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>Suites Appartement Midelt</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Check-in:</span><span class="value">16:00–00:00</span></div>
+            <div class="info-item"><span class="label">Check-out:</span><span class="value">06:00–10:00</span></div>
+            <div class="info-item"><span class="label">Zimmer:</span><span class="value">2-Zimmer-Appartement</span></div>
+            <div class="info-item"><span class="label">Gäste:</span><span class="value">2 Erw. + 3 Kinder (1, 4 &amp; 8 J.)</span></div>
+            <div class="info-item"><span class="label">Preis:</span><span class="value">76,50 €</span></div>
+            <div class="info-item"><span class="label">Tel.:</span><span class="value">+212 666 636923</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-blue">🛏️ Kein Mahlzeitenplan</span>
+            <span class="tag tag-blue">👤 Empfang vor Ort · 24/7</span>
+            <span class="tag tag-green">Kostenlos stornierbar bis 27. März</span>
+          </div>
+          <div class="confirmation-line">
+            <span>Bestätigung: <span class="code">6622425048</span></span>
+            <span>PIN: <span class="code">8062</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-dot drive">🚗</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge" style="background:var(--terracotta)">Mo. 30. März · morgens</span>
+            <div class="location">📍 Midelt → Merzouga</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>🚗 Fahrt in die Sahara</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Strecke:</span><span class="value">~270 km</span></div>
+            <div class="info-item"><span class="label">Fahrzeit:</span><span class="value">ca. 3,5 Std.</span></div>
+            <div class="info-item"><span class="label">Route:</span><span class="value">N13 über Errachidia Richtung Sahara</span></div>
+            <div class="info-item"><span class="label">Landschaft:</span><span class="value">Ziz-Tal, Palmenhaine, Wüstenrand</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag tag-green">🌴 Ziz-Tal &amp; Gorge du Ziz</span>
+            <span class="tag tag tag-gold">🦴 Erfoud – Fossilien aus dem Ordovizium</span>
+            <span class="tag tag tag-green">🕌 Rissani – Geburtsort der Alaouiten-Dynastie</span>
+          </div>
+          <div class="confirmation-line">
+            <a style="color:#4285f4;font-weight:600;text-decoration:none;font-size:0.82rem" href="https://maps.google.com/maps/dir/Midelt,+Morocco/Merzouga,+Morocco" target="_blank">🗺️ In Google Maps öffnen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NACHT 3: Merzouga – Hotel Sunset Palace -->
+    <div class="day-block">
+      <div class="day-dot">🏜️</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge">Mo. 30. – Di. 31. März</span>
+            <div class="location">📍 Merzouga (Sahara-Dünen)</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>Hotel Sunset Palace</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Check-in:</span><span class="value">14:00–23:30</span></div>
+            <div class="info-item"><span class="label">Check-out:</span><span class="value">08:00–12:00</span></div>
+            <div class="info-item"><span class="label">Zimmer:</span><span class="value">Family Suite</span></div>
+            <div class="info-item"><span class="label">Gäste:</span><span class="value">2 Erw. + 2 Kinder (4 &amp; 8 J.)</span></div>
+            <div class="info-item"><span class="label">Preis:</span><span class="value">261,45 €</span></div>
+            <div class="info-item"><span class="label">Tel.:</span><span class="value">+212 664-830236</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-green">🍳 Frühstück inklusive</span>
+            <span class="tag tag-red">💶 Nur Barzahlung (kein Kartenzahlung!)</span>
+          </div>
+          <div class="confirmation-line">
+            <span>Bestätigung: <span class="code">5234533101</span></span>
+            <span>PIN: <span class="code">0382</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-dot drive">🚗</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge" style="background:var(--terracotta)">Di. 31. März · nachmittags</span>
+            <div class="location">📍 Merzouga (Sunset Palace → Sahara Luxury Glamping)</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>🚗 Fahrt innerhalb Merzouga</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Strecke:</span><span class="value">~3 km</span></div>
+            <div class="info-item"><span class="label">Fahrzeit:</span><span class="value">ca. 10 min</span></div>
+            <div class="info-item"><span class="label">Route:</span><span class="value">Lokale Sandpiste durch die Dünen</span></div>
+            <div class="info-item"><span class="label">Tipp:</span><span class="value">Gepäck ggf. per Kamel zum Camp transportieren lassen</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag tag-gold">🐪 Erg Chebbi – Dünen bis 150 m Höhe</span>
+            <span class="tag tag tag-green">⭐ Sternenhimmel – kaum Lichtverschmutzung</span>
+          </div>
+          <div class="confirmation-line">
+            <a style="color:#4285f4;font-weight:600;text-decoration:none;font-size:0.82rem" href="https://maps.google.com/maps/dir/Sunset+Palace+Hotel+Merzouga/Sahara+Luxury+Glamping+Merzouga" target="_blank">🗺️ In Google Maps öffnen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NÄCHTE 4–5: Sahara Luxury Glamping -->
+    <div class="day-block">
+      <div class="day-dot camp">⛺</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge">Di. 31. Mär – Do. 2. Apr</span>
+            <div class="location">📍 Merzouga (Sahara)</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>Sahara Luxury Glamping</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Check-in:</span><span class="value">12:00–23:00</span></div>
+            <div class="info-item"><span class="label">Check-out:</span><span class="value">08:00–10:00</span></div>
+            <div class="info-item"><span class="label">Unterkunft:</span><span class="value">Luxus-Zelt · 2 Nächte</span></div>
+            <div class="info-item"><span class="label">Gäste:</span><span class="value">2 Erw. + 3 Kinder (1, 4 &amp; 8 J.)</span></div>
+            <div class="info-item"><span class="label">Preis:</span><span class="value">305,20 € (inkl. MwSt.)</span></div>
+            <div class="info-item"><span class="label">Tel.:</span><span class="value">+212 632 459921</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-green">🍳 Frühstück &amp; Abendessen inklusive</span>
+            <span class="tag tag-gold">🐪 Luxus-Glamping im Wüstencamp</span>
+            <span class="tag tag-green">Kostenlos stornierbar bis 31. März 18:00</span>
+            <span class="tag tag-red">💵 Barzahlung in MAD vor Ort</span>
+          </div>
+          <div class="confirmation-line">
+            <span>Bestätigung: <span class="code">6001209570</span></span>
+            <span>PIN: <span class="code">2852</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-dot drive">🚗</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge" style="background:var(--terracotta)">Do. 2. April · morgens</span>
+            <div class="location">📍 Merzouga → Ouarzazate</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>🚗 Fahrt durch Schluchten &amp; Täler</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Strecke:</span><span class="value">~320 km</span></div>
+            <div class="info-item"><span class="label">Fahrzeit:</span><span class="value">ca. 5 Std.</span></div>
+            <div class="info-item"><span class="label">Route:</span><span class="value">N10 über Tinghir, Todra-Schlucht &amp; Dadès-Tal</span></div>
+            <div class="info-item"><span class="label">Tipp:</span><span class="value">Stopp in der Todra-Schlucht unbedingt einplanen!</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag tag-gold">🏔️ Todra-Schlucht – bis 400 m hohe Felswände</span>
+            <span class="tag tag tag-green">🌹 Vallée des Roses – Rosenöl-Anbaugebiet</span>
+            <span class="tag tag tag-green">🏯 Dadès-Schlucht &amp; rote Felsformationen</span>
+            <span class="tag tag tag-gold">🎬 Ouarzazate – Kulisse für Gladiator &amp; GoT</span>
+          </div>
+          <div class="confirmation-line">
+            <a style="color:#4285f4;font-weight:600;text-decoration:none;font-size:0.82rem" href="https://maps.google.com/maps/dir/Merzouga,+Morocco/Ouarzazate,+Morocco" target="_blank">🗺️ In Google Maps öffnen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NACHT 6: Ouarzazate -->
+    <div class="day-block">
+      <div class="day-dot">🏺</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge">Do. 2. – Fr. 3. April</span>
+            <div class="location">📍 Ouarzazate ("Tor zur Sahara")</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>Chez l'habitant amazigh</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Check-in:</span><span class="value">10:00–21:00</span></div>
+            <div class="info-item"><span class="label">Check-out:</span><span class="value">09:00–18:00</span></div>
+            <div class="info-item"><span class="label">Zimmer:</span><span class="value">Doppelzimmer mit Gartenblick</span></div>
+            <div class="info-item"><span class="label">Gäste:</span><span class="value">2 Erw. + 2 Kinder (4 &amp; 8 J.)</span></div>
+            <div class="info-item"><span class="label">Preis:</span><span class="value">60,00 € (inkl. City Tax)</span></div>
+            <div class="info-item"><span class="label">Tel.:</span><span class="value">+212 610 227249</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-green">🍳 Frühstück inklusive</span>
+            <span class="tag tag-blue">🌿 Authentischer Berberstil</span>
+            <span class="tag tag-green">Kostenlos stornierbar bis 31. März</span>
+          </div>
+          <div class="confirmation-line">
+            <span>Bestätigung: <span class="code">5061350236</span></span>
+            <span>PIN: <span class="code">9920</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-dot drive">🚗</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge" style="background:var(--terracotta)">Fr. 3. April · morgens</span>
+            <div class="location">📍 Ouarzazate → Marrakesch</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>🚗 Fahrt über den Hohen Atlas</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Strecke:</span><span class="value">~200 km</span></div>
+            <div class="info-item"><span class="label">Fahrzeit:</span><span class="value">ca. 3 Std.</span></div>
+            <div class="info-item"><span class="label">Route:</span><span class="value">N9 über Tizi n'Tichka-Pass (2260 m)</span></div>
+            <div class="info-item"><span class="label">Tipp:</span><span class="value">Abstecher Aït Benhaddou: +15 min, absolut lohnenswert!</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag tag-gold">🏰 Aït Benhaddou ⭐ UNESCO-Welterbe</span>
+            <span class="tag tag tag-green">⛰️ Tizi n'Tichka – höchster Pass Marokkos (2260 m)</span>
+            <span class="tag tag tag-green">🎨 Telouet-Kasba – Palast des Glaoui-Paschas</span>
+          </div>
+          <div class="confirmation-line">
+            <a style="color:#4285f4;font-weight:600;text-decoration:none;font-size:0.82rem" href="https://maps.google.com/maps/dir/Ouarzazate,+Morocco/Marrakesh,+Morocco" target="_blank">🗺️ In Google Maps öffnen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NÄCHTE 7–8: Riad de Vincent Marrakech (UPDATED) -->
+    <div class="day-block">
+      <div class="day-dot">🕌</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge">Fr. 3. – So. 5. April</span>
+            <div class="location">📍 Medina, Marrakech</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>Riad de Vincent &nbsp;<span style="font-size:0.75rem;background:var(--light-orange);color:var(--orange);padding:2px 8px;border-radius:10px;font-weight:500">aktualisiert</span></h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Check-in:</span><span class="value">ab 14:00</span></div>
+            <div class="info-item"><span class="label">Check-out:</span><span class="value">bis 12:00</span></div>
+            <div class="info-item"><span class="label">Zimmer:</span><span class="value">Yasmina Suite · 2 Nächte</span></div>
+            <div class="info-item"><span class="label">Gäste:</span><span class="value">2 Erw. + 3 Kinder (1, 4 &amp; 8 J.)</span></div>
+            <div class="info-item"><span class="label">Preis:</span><span class="value">460,00 € (war: 670 €)</span></div>
+            <div class="info-item"><span class="label">Tel.:</span><span class="value">+212 661-425055</span></div>
+            <div class="info-item"><span class="label">Adresse:</span><span class="value">Derb Lalla Azzouza N19, Medina, Marrakech</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-green">🍳 Frühstück inklusive</span>
+            <span class="tag tag-red">💶 Nur Barzahlung! (kein Kartenzahlung)</span>
+            <span class="tag tag-blue">🏛️ Riads-Innenhof, Patio-Blick</span>
+            <span class="tag tag-orange">Anreise geändert: Fr. 3. Apr. (war Do. 2. Apr.)</span>
+          </div>
+          <div class="confirmation-line">
+            <span>Bestätigung: <span class="code">5701536818</span></span>
+            <span>PIN: <span class="code">5095</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-dot drive">🚗</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge" style="background:var(--terracotta)">So. 5. April · morgens</span>
+            <div class="location">📍 Marrakesch → Sidi Kaouki</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>🚗 Fahrt an die Atlantikküste</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Strecke:</span><span class="value">~190 km</span></div>
+            <div class="info-item"><span class="label">Fahrzeit:</span><span class="value">ca. 3 Std.</span></div>
+            <div class="info-item"><span class="label">Route:</span><span class="value">P2210 / N1 über Chichaoua Richtung Essaouira</span></div>
+            <div class="info-item"><span class="label">Landschaft:</span><span class="value">Argan-Wälder, Dünen, Atlantikküste</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag tag-gold">🕊️ Essaouira ⭐ UNESCO – Blau-weiße Küstenmedina</span>
+            <span class="tag tag tag-green">🌊 Erster Blick auf den Atlantik</span>
+            <span class="tag tag tag-green">🪷 Arganbäume mit kletternden Ziegen</span>
+          </div>
+          <div class="confirmation-line">
+            <a style="color:#4285f4;font-weight:600;text-decoration:none;font-size:0.82rem" href="https://maps.google.com/maps/dir/Marrakesh,+Morocco/Sidi+Kaouki,+Morocco" target="_blank">🗺️ In Google Maps öffnen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NÄCHTE 9–13: La Maison des Vagues (UPDATED) -->
+    <div class="day-block">
+      <div class="day-dot">🌊</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge">So. 5. – Fr. 10. April</span>
+            <div class="location">📍 Sidi Kaouki (bei Essaouira, Atlantikküste)</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>La Maison des Vagues &nbsp;<span style="font-size:0.75rem;background:var(--light-orange);color:var(--orange);padding:2px 8px;border-radius:10px;font-weight:500">aktualisiert</span></h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Check-in:</span><span class="value">16:00–22:00</span></div>
+            <div class="info-item"><span class="label">Check-out:</span><span class="value">10:30–11:00</span></div>
+            <div class="info-item"><span class="label">Zimmer:</span><span class="value">Suite mit Meerblick · 5 Nächte</span></div>
+            <div class="info-item"><span class="label">Gäste:</span><span class="value">2 Erw. + 3 Kinder (1, 4 &amp; 8 J.)</span></div>
+            <div class="info-item"><span class="label">Preis:</span><span class="value">655,88 € (MAD 6.843 inkl. City Tax · Kurs 10,89)</span></div>
+            <div class="info-item"><span class="label">Tel.:</span><span class="value">+212 671-492449</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-green">🍳 Frühstück inklusive</span>
+            <span class="tag tag-blue">🌊 Meerblick · Surfspot Sidi Kaouki</span>
+            <span class="tag tag-orange">Anreise geändert: So. 5. Apr. (war Sa. 4. Apr.)</span>
+          </div>
+          <div class="confirmation-line">
+            <span>Bestätigung: <span class="code">6979673895</span></span>
+            <span>PIN: <span class="code">7037</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-dot drive">🚗</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge" style="background:var(--terracotta)">Fr. 10. April · morgens</span>
+            <div class="location">📍 Sidi Kaouki → Casablanca</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>🚗 Fahrt zurück nach Casablanca</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Strecke:</span><span class="value">~300 km</span></div>
+            <div class="info-item"><span class="label">Fahrzeit:</span><span class="value">ca. 3,5 Std.</span></div>
+            <div class="info-item"><span class="label">Route:</span><span class="value">N1 Atlantikküste via Safi &amp; El Jadida</span></div>
+            <div class="info-item"><span class="label">Tipp:</span><span class="value">Früh starten – Rückgabe Mietwagen vor Abflug (12:30)</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag tag-green">🏺 Safi – Blaue Keramik &amp; Portugiesenfestung</span>
+            <span class="tag tag tag-gold">🏰 El Jadida ⭐ UNESCO – Portugiesische Zisterne</span>
+            <span class="tag tag tag-green">🕌 Azemmour – Malerische Medina am Fluss</span>
+          </div>
+          <div class="confirmation-line">
+            <a style="color:#4285f4;font-weight:600;text-decoration:none;font-size:0.82rem" href="https://maps.google.com/maps/dir/Sidi+Kaouki,+Morocco/Casablanca,+Morocco" target="_blank">🗺️ In Google Maps öffnen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NACHT 14: Stayhere Casablanca -->
+    <div class="day-block">
+      <div class="day-dot">🏙️</div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge">Fr. 10. – Sa. 11. April</span>
+            <div class="location">📍 Casablanca (Stadtzentrum)</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>Stayhere Casablanca – Gauthier 2</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Check-in:</span><span class="value">15:00–00:00</span></div>
+            <div class="info-item"><span class="label">Check-out:</span><span class="value">09:00–11:00</span></div>
+            <div class="info-item"><span class="label">Zimmer:</span><span class="value">2-Zimmer-Apartment</span></div>
+            <div class="info-item"><span class="label">Gäste:</span><span class="value">2 Erw. + 2 Kinder (4 &amp; 8 J.)</span></div>
+            <div class="info-item"><span class="label">Preis:</span><span class="value">124,94 € (bereits bezahlt)</span></div>
+            <div class="info-item"><span class="label">Tel.:</span><span class="value">+212 537 911313</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-green">✅ Vollständig vorausbezahlt</span>
+            <span class="tag tag-orange">☕ Frühstück nicht inklusive (9 €/Person)</span>
+            <span class="tag tag-red">🔒 Nicht erstattungsfähig</span>
+            <span class="tag tag-blue">🏨 Empfang 1. Etage</span>
+          </div>
+          <div class="confirmation-line">
+            <span>Bestätigung: <span class="code">5017717152</span></span>
+            <span>PIN: <span class="code">5974</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RÜCKFLUG -->
+    <div class="day-block">
+      <div class="day-dot" style="background:#1565c0;box-shadow:0 0 0 2px #1565c0">✈️</div>
+      <div class="card" style="border-left:4px solid #1565c0">
+        <div class="card-header">
+          <div>
+            <span class="date-badge" style="background:#1565c0">Sa. 11. April · 12:30 → 17:00</span>
+            <div class="location">Casablanca (CMN) → Amsterdam (AMS)</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>✈️ Rückflug – Royal Air Maroc AT850</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Abflug:</span><span class="value">Casablanca CMN · 12:30 Uhr</span></div>
+            <div class="info-item"><span class="label">Ankunft:</span><span class="value">Amsterdam AMS · 17:00 Uhr</span></div>
+            <div class="info-item"><span class="label">Flugdauer:</span><span class="value">3h 30min · Direktflug · Economy</span></div>
+            <div class="info-item"><span class="label">Mietwagenrückgabe:</span><span class="value">Terminal 2 · 10:00 Uhr (2,5h vor Abflug ✅)</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-green">⏱️ Ausreichend Zeit: Mietwagen 10:00 · Abflug 12:30</span>
+            <span class="tag tag-blue">Direktflug · Economy</span>
+          </div>
+          <div class="confirmation-line">
+            <span>Buchungsref.: <span class="code">ZSVPKT</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANKUNFT ZUHAUSE -->
+    <div class="day-block">
+      <div class="day-dot" style="background:#555;box-shadow:0 0 0 2px #555">🏠</div>
+      <div class="card" style="border-left:4px solid #888">
+        <div class="card-header">
+          <div>
+            <span class="date-badge" style="background:#555">Sa. 11. April · ca. 23:30 Uhr</span>
+            <div class="location">📍 Aalsmeer → Große Twiete 38, 25499 Tangstedt</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>🏠 Ankunft Zuhause</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Parkplatz-Abholung:</span><span class="value">ab 19:00 Uhr (Schiphol F7/F8/F9)</span></div>
+            <div class="info-item"><span class="label">Abfahrt Parkplatz:</span><span class="value">ca. 19:30 Uhr</span></div>
+            <div class="info-item"><span class="label">Ankunft Zuhause:</span><span class="value">ca. 23:30–00:00 Uhr</span></div>
+            <div class="info-item"><span class="label">Strecke:</span><span class="value">ca. 490 km · Niederlande → A1/A23 → Tangstedt</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-blue">🚌 Shuttle: Schilder „App pick-up point" F-Spur → F7/F8/F9</span>
+            <span class="tag tag-green">🎉 Urlaub geschafft!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- INSURANCE -->
+    <div class="day-block">
+      <div class="day-dot" style="background:var(--green);box-shadow:0 0 0 2px var(--green)">🛡</div>
+      <div class="card insurance-card">
+        <div class="card-header">
+          <div>
+            <span class="date-badge">28. Mär – 11. Apr</span>
+            <div class="location">Gesamte Reise</div>
+          </div>
+          <div style="margin-left:auto">
+            <h3>Reiseversicherung – Full Protection</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <div class="info-item"><span class="label">Versicherer:</span><span class="value">Zurich Full Insurance (über Booking.com)</span></div>
+            <div class="info-item"><span class="label">Leistung:</span><span class="value">Vollschutz-Versicherung EEA · Fahrzeugschutz</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag tag-green">✅ Dokumente vorhanden: Police, IPID, Zertifikat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /timeline -->
+
+  <!-- ── FAHRETAPPEN ÜBERSICHT ───────────────── -->
+  <div class="section-title">🚗 Fahretappen Übersicht</div>
+  <div class="routes-tile">
+    <h3>🗺️ Alle Strecken auf einen Blick</h3>
+
+    <div class="route-leg">
+      <div class="route-leg-icon">1</div>
+      <div class="route-leg-info">
+        <div class="route-leg-name">CMN Airport → Nouaseur</div>
+        <div class="route-leg-road">Mietwagen-Abholung am Terminal</div>
+      </div>
+      <div class="route-leg-stats"><span class="km">~5 km</span><span class="dur">~10 min</span></div>
+      <a class="route-leg-btn" href="https://maps.google.com/maps/dir/Mohammed+V+International+Airport/Nouaseur,+Morocco" target="_blank">🗺 Maps</a>
+      <div class="route-leg-sights">
+        <span class="route-sight-tag">🚗 AirCar Mietwagen-Übergabe</span>
+      </div>
+    </div>
+
+    <div class="route-leg">
+      <div class="route-leg-icon">2</div>
+      <div class="route-leg-info">
+        <div class="route-leg-name">Nouaseur → Midelt</div>
+        <div class="route-leg-road">A2 / N8 über Casablanca &amp; Azrou</div>
+      </div>
+      <div class="route-leg-stats"><span class="km">~280 km</span><span class="dur">~3,5 Std.</span></div>
+      <a class="route-leg-btn" href="https://maps.google.com/maps/dir/Nouaseur,+Morocco/Midelt,+Morocco" target="_blank">🗺 Maps</a>
+      <div class="route-leg-sights">
+        <span class="route-sight-tag">🌲 Azrou – Zederwald &amp; Berberaffen</span>
+        <span class="route-sight-tag">🏔️ Ifrane – „Schweiz Marokkos"</span>
+        <span class="route-sight-tag">⛰️ Col du Zad (2178 m)</span>
+      </div>
+    </div>
+
+    <div class="route-leg">
+      <div class="route-leg-icon">3</div>
+      <div class="route-leg-info">
+        <div class="route-leg-name">Midelt → Merzouga</div>
+        <div class="route-leg-road">N13 über Errachidia Richtung Sahara</div>
+      </div>
+      <div class="route-leg-stats"><span class="km">~270 km</span><span class="dur">~3,5 Std.</span></div>
+      <a class="route-leg-btn" href="https://maps.google.com/maps/dir/Midelt,+Morocco/Merzouga,+Morocco" target="_blank">🗺 Maps</a>
+      <div class="route-leg-sights">
+        <span class="route-sight-tag">🌴 Ziz-Tal &amp; Gorge du Ziz</span>
+        <span class="route-sight-tag">🦴 Erfoud – Fossilienstadt</span>
+        <span class="route-sight-tag">🕌 Rissani – Karawanenstadt</span>
+      </div>
+    </div>
+
+    <div class="route-leg">
+      <div class="route-leg-icon">4</div>
+      <div class="route-leg-info">
+        <div class="route-leg-name">Merzouga – innerhalb</div>
+        <div class="route-leg-road">Sunset Palace → Sahara Luxury Glamping</div>
+      </div>
+      <div class="route-leg-stats"><span class="km">~3 km</span><span class="dur">~10 min</span></div>
+      <a class="route-leg-btn" href="https://maps.google.com/maps/dir/Sunset+Palace+Hotel+Merzouga/Sahara+Luxury+Glamping+Merzouga" target="_blank">🗺 Maps</a>
+      <div class="route-leg-sights">
+        <span class="route-sight-tag">🐪 Erg Chebbi – Dünen bis 150 m</span>
+        <span class="route-sight-tag">⭐ Sternenhimmel &amp; Astrofotografie</span>
+      </div>
+    </div>
+
+    <div class="route-leg">
+      <div class="route-leg-icon">5</div>
+      <div class="route-leg-info">
+        <div class="route-leg-name">Merzouga → Ouarzazate</div>
+        <div class="route-leg-road">N10 via Tinghir &amp; Todra-Schlucht</div>
+      </div>
+      <div class="route-leg-stats"><span class="km">~320 km</span><span class="dur">~5 Std.</span></div>
+      <a class="route-leg-btn" href="https://maps.google.com/maps/dir/Merzouga,+Morocco/Ouarzazate,+Morocco" target="_blank">🗺 Maps</a>
+      <div class="route-leg-sights">
+        <span class="route-sight-tag">🏔️ Todra-Schlucht (400 m hoch)</span>
+        <span class="route-sight-tag">🌹 Vallée des Roses – Dadès-Tal</span>
+        <span class="route-sight-tag">🎬 Ouarzazate – Afrikas Filmhauptstadt</span>
+      </div>
+    </div>
+
+    <div class="route-leg">
+      <div class="route-leg-icon">6</div>
+      <div class="route-leg-info">
+        <div class="route-leg-name">Ouarzazate → Marrakesch</div>
+        <div class="route-leg-road">N9 über Tizi n'Tichka-Pass (2260 m)</div>
+      </div>
+      <div class="route-leg-stats"><span class="km">~200 km</span><span class="dur">~3 Std.</span></div>
+      <a class="route-leg-btn" href="https://maps.google.com/maps/dir/Ouarzazate,+Morocco/Marrakesh,+Morocco" target="_blank">🗺 Maps</a>
+      <div class="route-leg-sights">
+        <span class="route-sight-tag">🏰 Aït Benhaddou ⭐ UNESCO</span>
+        <span class="route-sight-tag">⛰️ Tizi n'Tichka – höchster Pass Marokkos</span>
+        <span class="route-sight-tag">🎨 Telouet-Kasba (optionaler Abstecher)</span>
+      </div>
+    </div>
+
+    <div class="route-leg">
+      <div class="route-leg-icon">7</div>
+      <div class="route-leg-info">
+        <div class="route-leg-name">Marrakesch → Sidi Kaouki</div>
+        <div class="route-leg-road">P2210 / N1 via Essaouira</div>
+      </div>
+      <div class="route-leg-stats"><span class="km">~190 km</span><span class="dur">~3 Std.</span></div>
+      <a class="route-leg-btn" href="https://maps.google.com/maps/dir/Marrakesh,+Morocco/Sidi+Kaouki,+Morocco" target="_blank">🗺 Maps</a>
+      <div class="route-leg-sights">
+        <span class="route-sight-tag">🕊️ Essaouira ⭐ UNESCO</span>
+        <span class="route-sight-tag">🌊 Erster Blick auf den Atlantik</span>
+        <span class="route-sight-tag">🪷 Arganbäume mit kletternden Ziegen</span>
+      </div>
+    </div>
+
+    <div class="route-leg">
+      <div class="route-leg-icon">8</div>
+      <div class="route-leg-info">
+        <div class="route-leg-name">Sidi Kaouki → Casablanca</div>
+        <div class="route-leg-road">N1 Atlantikküste via Safi &amp; El Jadida</div>
+      </div>
+      <div class="route-leg-stats"><span class="km">~300 km</span><span class="dur">~3,5 Std.</span></div>
+      <a class="route-leg-btn" href="https://maps.google.com/maps/dir/Sidi+Kaouki,+Morocco/Casablanca,+Morocco" target="_blank">🗺 Maps</a>
+      <div class="route-leg-sights">
+        <span class="route-sight-tag">🏺 Safi – Blaue Keramikstadt</span>
+        <span class="route-sight-tag">🏰 El Jadida ⭐ UNESCO</span>
+        <span class="route-sight-tag">🕌 Azemmour – malerische Medina</span>
+      </div>
+    </div>
+
+    <div class="routes-total">
+      <span class="total-label">🗺️ Gesamte Fahrtstrecke in Marokko</span>
+      <span class="total-val">
+        <strong>~1.668 km</strong> &nbsp;·&nbsp; ca. <strong>22 Std.</strong> Fahrzeit &nbsp;·&nbsp; 8 Etappen
+      </span>
+    </div>
+  </div>
+
+  <!-- ── VOLLSTÄNDIGKEITS-STATUS ──────────────── -->
+  <div class="status-banner">
+    <h2>📋 Vollständigkeitsprüfung</h2>
+    <div class="status-grid">
+      <div class="status-item status-ok">
+        <div class="icon">✅</div>
+        <div class="text"><strong>Unterkunft vollständig</strong>Alle 14 Nächte lückenlos gebucht</div>
+      </div>
+      <div class="status-item status-ok">
+        <div class="icon">✅</div>
+        <div class="text"><strong>Mietwagen</strong>AirCar – gesamte Reisedauer</div>
+      </div>
+      <div class="status-item status-ok">
+        <div class="icon">✅</div>
+        <div class="text"><strong>Versicherung</strong>Full Protection Insurance vorhanden</div>
+      </div>
+      <div class="status-item status-ok">
+        <div class="icon">✅</div>
+        <div class="text"><strong>Flüge bestätigt</strong>Royal Air Maroc AT851/AT850 · Ref. ZSVPKT</div>
+      </div>
+      <div class="status-item status-ok">
+        <div class="icon">✅</div>
+        <div class="text"><strong>Parkplatz gebucht</strong>Quick Parking Z Schiphol · Code KNSDDT</div>
+      </div>
+      <div class="status-item status-warn">
+        <div class="icon">⚠️</div>
+        <div class="text"><strong>Bargeld erforderlich</strong>2 Hotels nur Barzahlung (Sunset Palace &amp; Riad de Vincent)</div>
+      </div>
+      <div class="status-item status-warn">
+        <div class="icon">⚠️</div>
+        <div class="text"><strong>Kaution nötig</strong>Next Home Airport: MAD 1.000 Barkaution bei Anreise</div>
+      </div>
+      <div class="status-item status-warn">
+        <div class="icon">⚠️</div>
+        <div class="text"><strong>Kein Aufgabegepäck!</strong>Flug nur mit Handgepäck gebucht (4 Kabinentaschen je 10 kg)</div>
+      </div>
+      <div class="status-item status-warn">
+        <div class="icon">⚠️</div>
+        <div class="text"><strong>3 Fremddokumente</strong>Horb-Immobilien-Unterlagen im Archiv – nicht reiserelevant</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WICHTIGE HINWEISE ───────────────────── -->
+  <div class="notice-cards">
+    <div class="notice red">
+      <h4>⚠️ Enger Zeitpuffer am Anreisetag!</h4>
+      <p>Flug AT851 landet <strong>20:45 Uhr</strong> in Casablanca. Mietwagenabholung ist erst ab <strong>22:00 Uhr</strong> geplant – das gibt nur ~75 Minuten Puffer für Pass- &amp; Gepäckkontrolle. Keine aufgegebenen Koffer erleichtert dies.</p>
+    </div>
+    <div class="notice green">
+      <h4>✅ Kein Aufgabegepäck = schnellere Abfertigung</h4>
+      <p>Der Flug ist nur mit <strong>Handgepäck</strong> gebucht (4 Kabinentaschen à 10 kg + 4 Untergestell-Items). Für 14 Nächte mit Kindern ggf. Gepäck nachrüsten (gegen Aufpreis bei RAM buchbar).</p>
+    </div>
+    <div class="notice">
+      <h4>⚠️ Barzahlung (2 Hotels)</h4>
+      <p><strong>Hotel Sunset Palace</strong> und <strong>Riad de Vincent</strong> akzeptieren ausschließlich Bargeld (MAD). Bitte ausreichend Dirham wechseln.</p>
+    </div>
+    <div class="notice">
+      <h4>⚠️ Barkaution Next Home</h4>
+      <p>Bei Anreise ist eine Kaution von <strong>MAD 1.000</strong> in bar zu hinterlegen. Rückgabe nach Abreise nach Zustandsprüfung.</p>
+    </div>
+    <div class="notice green">
+      <h4>✅ Frühstück inklusive</h4>
+      <p>Frühstück ist bei Next Home, Sunset Palace, Sahara Luxury Glamping (+ Abendessen), Chez l'habitant amazigh, Riad de Vincent und La Maison des Vagues inklusive.</p>
+    </div>
+    <div class="notice green">
+      <h4>✅ Reiseversicherung</h4>
+      <p>Full Protection Insurance ist abgeschlossen. Dokumente (Police, IPID, Zertifikat) liegen im Archiv vor.</p>
+    </div>
+    <div class="notice red">
+      <h4>⚠️ Parkplatz Barcode nicht vergessen!</h4>
+      <p>Für die Einfahrt bei Quick Parking Z den <strong>Barcode der Buchungsbestätigung</strong> (Code KNSDDT) am Automaten scannen. Bei Rückkunft: Schilder „App pick-up point" zur F-Spur folgen → Busse F7, F8, F9. Parkplatz ist <strong>nicht stornierbar!</strong></p>
+    </div>
+    <div class="notice">
+      <h4>⚠️ Aktualisierte Buchungen</h4>
+      <p><strong>Riad de Vincent</strong> (jetzt 3.–5. Apr, 2 Nächte) und <strong>La Maison des Vagues</strong> (jetzt 5.–10. Apr, 5 Nächte) wurden angepasst. Bitte alte Bestätigungen ignorieren.</p>
+    </div>
+  </div>
+
+  <div style="text-align:center;color:rgba(255,255,255,0.55);margin-top:40px;font-size:0.8rem;">
+    Erstellt aus Buchungsbestätigungen · Stand März 2026 · Alle Preise vorbehaltlich Wechselkursänderungen
+  </div>
+
+</div>
+</body>
+</html>
